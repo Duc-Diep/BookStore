@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">BookStore</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Username</string>
+    <string name="nav_header_subtitle">ducdiep2k@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Trang chủ</string>
+    <string name="menu_cart">Giỏ hàng</string>
+    <string name="menu_upload">Đăng bán sách</string>
+    <string name="menu_listSell">Danh sách sách đã đăng bán</string>
+    <string name="menu_search">Tìm kiếm sách</string>
+    <string name="list_book">Đề xuất cho bạn</string>
+    <string name="new_list">Mới cập nhật</string>
+    <string name="default_list">Sách hot nhất</string>
+</resources>
