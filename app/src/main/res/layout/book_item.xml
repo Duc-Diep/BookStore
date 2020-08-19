@@ -15,6 +15,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_150sdp">
                 <RelativeLayout
+                    android:id="@+id/imgBook"
                     android:background="@drawable/android_avatar"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">

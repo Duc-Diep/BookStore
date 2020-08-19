@@ -7,6 +7,12 @@
         android:layout_height="match_parent"
         android:background="#03A9F4"
         tools:context = "ui.bookinfo.BookInfoFragment">
+    <Button
+        android:id="@+id/btnBack"
+        android:text="Back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
+    </Button>
     </RelativeLayout>
 </layout>
