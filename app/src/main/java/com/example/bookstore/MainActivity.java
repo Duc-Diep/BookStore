@@ -2,17 +2,26 @@ package com.example.bookstore;
 
 import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
 import com.example.bookstore.databinding.ActivityMainBinding;
 import com.example.bookstore.ui.bookinfo.BookInfoFragment;
+import com.example.bookstore.ui.cart.CartFragment;
+import com.example.bookstore.ui.home.HomeFragment;
+import com.example.bookstore.ui.listsell.ListSellFragment;
+import com.example.bookstore.ui.search.SearchByNameFragment;
+import com.example.bookstore.ui.upload.UploadFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
@@ -26,6 +35,7 @@ import androidx.appcompat.widget.Toolbar;
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     private AppBarConfiguration mAppBarConfiguration;
+    private static final String TAG = "MainActivity";
 
 
     @Override
@@ -34,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.hideOverflowMenu();
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        //toolbar.hideOverflowMenu();
+        final DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -45,7 +55,26 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
+//        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                switch (item.getItemId()){
+//                    case R.id.nav_cart:
+//                        getFragment(CartFragment.newInstance());
+//                        drawer.closeDrawers();
+//                    case R.id.nav_search:
+//                        getFragment(SearchByNameFragment.newInstance());
+//                        drawer.closeDrawers();
+//                    case R.id.nav_listSell:
+//                        getFragment(ListSellFragment.newInstance());
+//                        drawer.closeDrawers();
+//                    case R.id.nav_upload:
+//                        getFragment(UploadFragment.newInstance());
+//                        drawer.closeDrawers();
+//                }
+//                return false;
+//            }
+//        });
     }
 
 //    @Override
@@ -55,7 +84,14 @@ public class MainActivity extends AppCompatActivity {
 //        return true;
 //    }
 
-
+    public void getFragment(Fragment fragment){
+        try {
+            getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,fragment).commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            Log.d(TAG,"getFragment"+e.getMessage());
+        }
+    }
     @Override
     //gọi cái navigation ra
     public boolean onSupportNavigateUp() {
@@ -64,14 +100,4 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
-
-    @Override
-    protected void onRestart() {
-
-        super.onRestart();
-    }
 }

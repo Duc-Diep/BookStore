@@ -3,10 +3,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".MainActivity">
+    <RelativeLayout
+        android:padding="@dimen/_2sdp"
+        android:background="#fff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@drawable/bookstore_logo"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_50sdp">
+        </ImageView>
+        <Button
+            android:layout_toLeftOf="@id/btnEnglish"
+            android:id="@+id/btnTiengViet"
+            android:text="Tiếng Việt"
+            android:layout_marginRight="@dimen/_2sdp"
+            android:textSize="@dimen/_5sdp"
+            android:background="@color/bgr_btn_language"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_15sdp">
+        </Button>
+        <Button
+            android:background="@color/bgr_btn_language_none"
+            android:id="@+id/btnEnglish"
+            android:text="English"
+            android:textSize="@dimen/_5sdp"
+            android:layout_alignParentRight="true"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_15sdp">
+        </Button>
+        <TextView
+            android:layout_marginTop="@dimen/_2sdp"
+            android:textSize="@dimen/_8sdp"
+            android:text="@string/contact"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/btnTiengViet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
+        </TextView>
+    </RelativeLayout>
     <com.google.android.material.appbar.AppBarLayout
+        android:layout_marginTop="@dimen/_50sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">

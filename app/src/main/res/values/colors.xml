@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="color_app_bar">#6200EE</color>
+    <color name="backgr_home">#ECE8EC</color>
+    <color name="bgr_btn_language">#2196F3</color>
+    <color name="bgr_btn_language_none">#D1D6D6</color>
 </resources>

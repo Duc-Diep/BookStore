@@ -15,6 +15,14 @@ import com.example.bookstore.databinding.FragmentUploadBinding;
 public class UploadFragment extends Fragment {
     FragmentUploadBinding binding;
 
+    public static UploadFragment newInstance() {
+        
+        Bundle args = new Bundle();
+        
+        UploadFragment fragment = new UploadFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_upload,container,false);
         return binding.getRoot();

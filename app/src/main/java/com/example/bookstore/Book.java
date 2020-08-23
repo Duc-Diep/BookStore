@@ -1,6 +1,11 @@
 package com.example.bookstore;
 
-public class Book {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class Book implements Parcelable, Serializable {
     int id;
     String imageLink;
     String title;
@@ -20,6 +25,29 @@ public class Book {
         this.numOfPage = numOfPage;
         this.price = price;
     }
+
+    protected Book(Parcel in) {
+        id = in.readInt();
+        imageLink = in.readString();
+        title = in.readString();
+        author = in.readString();
+        publisher = in.readString();
+        releaseYear = in.readInt();
+        numOfPage = in.readInt();
+        price = in.readDouble();
+    }
+
+    public static final Creator<Book> CREATOR = new Creator<Book>() {
+        @Override
+        public Book createFromParcel(Parcel in) {
+            return new Book(in);
+        }
+
+        @Override
+        public Book[] newArray(int size) {
+            return new Book[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -83,5 +111,22 @@ public class Book {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(imageLink);
+        dest.writeString(title);
+        dest.writeString(author);
+        dest.writeString(publisher);
+        dest.writeInt(releaseYear);
+        dest.writeInt(numOfPage);
+        dest.writeDouble(price);
     }
 }

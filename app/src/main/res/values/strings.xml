@@ -12,7 +12,8 @@
     <string name="menu_upload">Đăng bán sách</string>
     <string name="menu_listSell">Danh sách sách đã đăng bán</string>
     <string name="menu_search">Tìm kiếm sách</string>
-    <string name="list_book">Đề xuất cho bạn</string>
+    <string name="offer_list_book">Đề xuất cho bạn</string>
     <string name="new_list">Mới cập nhật</string>
-    <string name="default_list">Sách hot nhất</string>
+    <string name="hot_list">Sách hot nhất</string>
+    <string name="contact">Liên hệ:0981206317</string>
 </resources>

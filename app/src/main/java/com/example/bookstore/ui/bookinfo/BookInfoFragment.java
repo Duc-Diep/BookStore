@@ -12,14 +12,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.bookstore.Book;
 import com.example.bookstore.R;
-import com.example.bookstore.databinding.FragmentBookInfoBinding;
+import com.example.bookstore.databinding.FragmentBookItemInforBinding;
 
 
 public class BookInfoFragment extends Fragment {
-    FragmentBookInfoBinding binding;
-    final Fragment me = this;
-    public static BookInfoFragment newInstance() {
+    FragmentBookItemInforBinding binding;
+
+    public static BookInfoFragment newInstance(Book book) {
 
         Bundle args = new Bundle();
 
@@ -31,18 +32,9 @@ public class BookInfoFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_book_info,container,false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_list_book_info,container,false);
 
-        binding.btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager manager =getActivity().getSupportFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-                manager.getBackStackEntryCount();
-                transaction.remove(me);
-                transaction.commit();
-            }
-        });
+
         return binding.getRoot();
     }
 }
