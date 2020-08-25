@@ -21,12 +21,12 @@
             android:text="Tiếng Việt"
             android:layout_marginRight="@dimen/_2sdp"
             android:textSize="@dimen/_5sdp"
-            android:background="@color/bgr_btn_language"
+            android:background="@drawable/bgr_language"
             android:layout_width="@dimen/_35sdp"
             android:layout_height="@dimen/_15sdp">
         </Button>
         <Button
-            android:background="@color/bgr_btn_language_none"
+            android:background="@drawable/bgr_language_none"
             android:id="@+id/btnEnglish"
             android:text="English"
             android:textSize="@dimen/_5sdp"
@@ -36,7 +36,7 @@
         </Button>
         <TextView
             android:layout_marginTop="@dimen/_2sdp"
-            android:textSize="@dimen/_8sdp"
+            android:textSize="@dimen/_7sdp"
             android:text="@string/contact"
             android:layout_alignParentRight="true"
             android:layout_below="@id/btnTiengViet"

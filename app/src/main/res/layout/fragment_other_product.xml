@@ -10,7 +10,7 @@
         <TextView
             android:layout_centerInParent="true"
             android:id="@+id/text_gallery"
-            android:text="Đây là trang upload"
+            android:text="Đây là trang other product"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"

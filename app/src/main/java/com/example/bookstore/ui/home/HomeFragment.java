@@ -78,6 +78,30 @@ public class HomeFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
+        binding.moreHotBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = ListBookFragment.newInstance(list2);
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
+                fragmentTransaction.addToBackStack(null);
+                //fragmentTransaction.show(fragment);
+                fragmentTransaction.commit();
+            }
+        });
+        binding.moreOfferBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = ListBookFragment.newInstance(list3);
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
+                fragmentTransaction.addToBackStack(null);
+                //fragmentTransaction.show(fragment);
+                fragmentTransaction.commit();
+            }
+        });
         binding.moreHotBook.setVisibility(View.INVISIBLE);
         binding.moreNewBook.setVisibility(View.INVISIBLE);
         binding.moreOfferBook.setVisibility(View.INVISIBLE);

@@ -5,12 +5,12 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.listsell.ListSellFragment"
+        tools:context=".ui.logout.LogOutFragment"
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_centerInParent="true"
-            android:text="Đây là trang list"
+            android:text="Đây là trang logout"
             android:layout_height="wrap_content">
         </TextView>
     </RelativeLayout>

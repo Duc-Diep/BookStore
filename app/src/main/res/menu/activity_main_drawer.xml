@@ -18,12 +18,12 @@
             android:icon="@drawable/ic_local_grocery_store_black_24dp"
             android:title="@string/menu_cart" />
         <item
-            android:id="@+id/nav_upload"
+            android:id="@+id/nav_other_product"
             android:icon="@drawable/ic_book_black_24dp"
-            android:title="@string/menu_upload" />
+            android:title="@string/menu_other_product" />
         <item
-            android:id="@+id/nav_listSell"
+            android:id="@+id/nav_logout"
             android:icon="@drawable/ic_bookmark_black_24dp"
-            android:title="@string/menu_listSell" />
+            android:title="@string/menu_logout" />
     </group>
 </menu>

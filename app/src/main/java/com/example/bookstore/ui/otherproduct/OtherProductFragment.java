@@ -1,4 +1,4 @@
-package com.example.bookstore.ui.upload;
+package com.example.bookstore.ui.otherproduct;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,21 +10,21 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import com.example.bookstore.R;
-import com.example.bookstore.databinding.FragmentUploadBinding;
+import com.example.bookstore.databinding.FragmentOtherProductBinding;
 
-public class UploadFragment extends Fragment {
-    FragmentUploadBinding binding;
+public class OtherProductFragment extends Fragment {
+    FragmentOtherProductBinding binding;
 
-    public static UploadFragment newInstance() {
+    public static OtherProductFragment newInstance() {
         
         Bundle args = new Bundle();
         
-        UploadFragment fragment = new UploadFragment();
+        OtherProductFragment fragment = new OtherProductFragment();
         fragment.setArguments(args);
         return fragment;
     }
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_upload,container,false);
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_other_product,container,false);
         return binding.getRoot();
     }
 }

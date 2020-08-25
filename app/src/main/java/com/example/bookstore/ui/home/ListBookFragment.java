@@ -2,6 +2,8 @@ package com.example.bookstore.ui.home;
 
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +58,31 @@ public class ListBookFragment extends Fragment {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),3, RecyclerView.VERTICAL,false);
         binding.listBook.setAdapter(adapter);
         binding.listBook.setLayoutManager(gridLayoutManager);
+        binding.edtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                List<Book> templist =new ArrayList<>();
+                for(int i=0;i<listBook.size();i++){
+                    if(listBook.get(i).getTitle().toLowerCase().contains(s.toString().toLowerCase())){
+                        templist.add(listBook.get(i));
+                    }
+                }
+                BookAdapter adapter = new BookAdapter(templist, getContext());
+                GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),3, RecyclerView.VERTICAL,false);
+                binding.listBook.setAdapter(adapter);
+                binding.listBook.setLayoutManager(gridLayoutManager);
+            }
+        });
         return binding.getRoot();
     }
 }
