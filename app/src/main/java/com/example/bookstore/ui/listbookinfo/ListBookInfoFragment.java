@@ -1,4 +1,4 @@
-package com.example.bookstore.ui.bookinfo;
+package com.example.bookstore.ui.listbookinfo;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,22 +9,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
-import com.example.bookstore.Book;
+import com.example.bookstore.ui.book.Book;
 import com.example.bookstore.R;
 import com.example.bookstore.databinding.FragmentBookItemInforBinding;
 
 
-public class BookInfoFragment extends Fragment {
+public class ListBookInfoFragment extends Fragment {
     FragmentBookItemInforBinding binding;
 
-    public static BookInfoFragment newInstance(Book book) {
+    public static ListBookInfoFragment newInstance(Book book) {
 
         Bundle args = new Bundle();
 
-        BookInfoFragment fragment = new BookInfoFragment();
+        ListBookInfoFragment fragment = new ListBookInfoFragment();
         fragment.setArguments(args);
         return fragment;
     }

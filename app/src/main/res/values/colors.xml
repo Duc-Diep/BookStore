@@ -4,4 +4,6 @@
     <color name="backgr_home">#ECE8EC</color>
     <color name="bgr_btn_language">#2196F3</color>
     <color name="bgr_btn_language_none">#D1D6D6</color>
+    <color name="text_btn_add_cart">#fff</color>
+    <color name="bgr_btn_add_cart">#2196F3</color>
 </resources>

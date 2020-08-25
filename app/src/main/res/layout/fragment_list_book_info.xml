@@ -7,7 +7,7 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/_5sdp"
         android:background="@color/backgr_home"
-        tools:context = "ui.bookinfo.BookInfoFragment">
+        tools:context = ".ui.listbookinfo.ListBookInfoFragment">
         <LinearLayout
             android:orientation="horizontal"
             android:id="@+id/layoutTemp"

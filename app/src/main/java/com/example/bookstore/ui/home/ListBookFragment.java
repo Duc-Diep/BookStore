@@ -7,7 +7,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,8 +17,8 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bookstore.Book;
-import com.example.bookstore.BookAdapter;
+import com.example.bookstore.ui.book.Book;
+import com.example.bookstore.ui.book.BookAdapter;
 import com.example.bookstore.R;
 import com.example.bookstore.databinding.FragmentListBookInfoBinding;
 

@@ -1,25 +1,15 @@
 package com.example.bookstore.ui.home;
 
-import android.database.DatabaseUtils;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,27 +17,20 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.bookstore.Book;
-import com.example.bookstore.BookAdapter;
+import com.example.bookstore.ui.book.Book;
+import com.example.bookstore.ui.book.BookAdapter;
 import com.example.bookstore.R;
 import com.example.bookstore.databinding.FragmentHomeBinding;
-import com.example.bookstore.ui.bookinfo.BookInfoFragment;
-import com.example.bookstore.ui.search.SearchByNameFragment;
+import com.example.bookstore.ui.book.BookItemInfo;
+import com.example.bookstore.ui.book.IonClickBook;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
@@ -155,6 +138,18 @@ public class HomeFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager1 = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         binding.listNewBook.setAdapter(adapter1);
         binding.listNewBook.setLayoutManager(layoutManager1);
+        adapter1.setIonClickBook(new IonClickBook() {
+            @Override
+            public void onClickItem(Book book) {
+                Fragment fragment = BookItemInfo.newInstance(book);
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
+                fragmentTransaction.addToBackStack(null);
+                //fragmentTransaction.show(fragment);
+                fragmentTransaction.commit();
+            }
+        });
         //add list 2
         list2 = new ArrayList<>();
         for(int i =list.size()-1;i>=0;i--){

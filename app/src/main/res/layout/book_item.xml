@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <RelativeLayout
+        android:id="@+id/layoutClicker"
         android:layout_width="@dimen/_100sdp"
         android:padding="@dimen/_5sdp"
         android:layout_height="wrap_content">

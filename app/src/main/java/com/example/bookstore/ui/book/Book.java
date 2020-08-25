@@ -1,4 +1,4 @@
-package com.example.bookstore;
+package com.example.bookstore.ui.book;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -1,4 +1,4 @@
-package com.example.bookstore;
+package com.example.bookstore.ui.book;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,8 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookstore.R;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
 import java.text.NumberFormat;
 import java.util.List;
@@ -21,6 +21,11 @@ import java.util.Locale;
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     List<Book> list;
     Context context;
+    IonClickBook ionClickBook;
+
+    public void setIonClickBook(IonClickBook ionClickBook) {
+        this.ionClickBook = ionClickBook;
+    }
 
     public BookAdapter(List<Book> list, Context context) {
         this.list = list;
@@ -38,13 +43,19 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull BookAdapter.ViewHolder holder, int position) {
-        Book book = list.get(position);
+        final Book book = list.get(position);
         Picasso.with(context).load(book.getImageLink()).into(holder.imgBook);
         holder.tvTitle.setText(book.getTitle());
         Locale local =new Locale("vi","VN");
         NumberFormat numberFormat = NumberFormat.getInstance(local);
         String money = numberFormat.format(book.getPrice());
         holder.tvPricebook.setText(money+"đ");
+        holder.layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ionClickBook.onClickItem(book);
+            }
+        });
     }
 
     @Override
@@ -55,11 +66,13 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imgBook;
         TextView tvTitle,tvPricebook;
+        RelativeLayout layout;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imgBook = itemView.findViewById(R.id.imgBook);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvPricebook= itemView.findViewById(R.id.tvPriceBook);
+            layout = itemView.findViewById(R.id.layoutClicker);
         }
     }
 }
