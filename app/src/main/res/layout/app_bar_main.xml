@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <ImageView
+            android:scaleType="fitXY"
             android:src="@drawable/bookstore_logo"
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_50sdp">
@@ -49,6 +50,7 @@
         android:layout_marginTop="@dimen/_50sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fadeScrollbars="true"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
@@ -56,6 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/color_app_bar"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>

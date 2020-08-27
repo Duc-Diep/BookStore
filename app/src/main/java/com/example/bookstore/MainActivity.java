@@ -66,26 +66,6 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-//        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                switch (item.getItemId()){
-//                    case R.id.nav_cart:
-//                        getFragment(CartFragment.newInstance());
-//                        drawer.closeDrawers();
-//                    case R.id.nav_search:
-//                        getFragment(SearchByNameFragment.newInstance());
-//                        drawer.closeDrawers();
-//                    case R.id.nav_other_product:
-//                        getFragment(OtherProductFragment.newInstance());
-//                        drawer.closeDrawers();
-//                    case R.id.nav_logout:
-//                        getFragment(LogOutFragment.newInstance());
-//                        drawer.closeDrawers();
-//                }
-//                return false;
-//            }
-//        });
     }
 
 //    @Override

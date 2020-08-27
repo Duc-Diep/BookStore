@@ -85,6 +85,7 @@ public class HomeFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
+
         binding.moreHotBook.setVisibility(View.INVISIBLE);
         binding.moreNewBook.setVisibility(View.INVISIBLE);
         binding.moreOfferBook.setVisibility(View.INVISIBLE);
@@ -92,10 +93,11 @@ public class HomeFragment extends Fragment {
         StringRequest stringRequest= new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                binding.progessbar.setVisibility(View.INVISIBLE);
                 binding.moreHotBook.setVisibility(View.VISIBLE);
                 binding.moreNewBook.setVisibility(View.VISIBLE);
                 binding.moreOfferBook.setVisibility(View.VISIBLE);
-                result = response.toString();
+                result = response;
                 getJson();
             }
         }, new Response.ErrorListener() {
@@ -105,16 +107,16 @@ public class HomeFragment extends Fragment {
             }
         });
         requestQueue.add(stringRequest);
-//        (new DoGetData()).execute();
+
         return binding.getRoot();
 
     }
     private void getJson() {
 
         list = new ArrayList<>();
-        int id,releaseYear,numOfPage;
-        String imageLink,title,author,publisher;
-        double price;
+        int id,releaseYear,numOfPage,numOfReview;
+        String imageLink,title,author,publisher,description,category;
+        double price,rateStar;
         try {
             JSONArray jsonArray = new JSONArray(result);
             for (int i = 0; i < jsonArray.length(); i++) {
@@ -127,7 +129,11 @@ public class HomeFragment extends Fragment {
                 title = object.getString("title");
                 author = object.getString("author");
                 publisher = object.getString("publisher");
-                list.add(new Book(id, imageLink, title, author, publisher, releaseYear, numOfPage,price));
+                numOfReview = object.getInt("numOfReview");
+                description = object.getString("description");
+                category = object.getString("categoty");
+                rateStar = object.getDouble("rateStar");
+                list.add(new Book(id, imageLink, title, author, publisher, releaseYear, numOfPage,price,rateStar,numOfReview,description,category));
             }
 
         } catch (JSONException e) {
@@ -141,7 +147,7 @@ public class HomeFragment extends Fragment {
         adapter1.setIonClickBook(new IonClickBook() {
             @Override
             public void onClickItem(Book book) {
-                Fragment fragment = BookItemInfo.newInstance(book);
+                Fragment fragment = BookItemInfo.newInstance(list,book);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
@@ -159,6 +165,17 @@ public class HomeFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager2 = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         binding.listHotBook.setAdapter(adapter2);
         binding.listHotBook.setLayoutManager(layoutManager2);
+        adapter2.setIonClickBook(new IonClickBook() {
+            @Override
+            public void onClickItem(Book book) {
+                Fragment fragment = BookItemInfo.newInstance(list,book);
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
         //add list3
         list3 = new ArrayList<>();
         for(int i =list.size()/2;i>=0;i--){
@@ -171,6 +188,17 @@ public class HomeFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager3 = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         binding.listOfferBook.setAdapter(adapter3);
         binding.listOfferBook.setLayoutManager(layoutManager3);
+        adapter3.setIonClickBook(new IonClickBook() {
+            @Override
+            public void onClickItem(Book book) {
+                Fragment fragment = BookItemInfo.newInstance(list,book);
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
     }
 
 }

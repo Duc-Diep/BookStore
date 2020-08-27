@@ -16,4 +16,11 @@
     <string name="new_list">Mới cập nhật</string>
     <string name="hot_list">Sách hot nhất</string>
     <string name="contact">Liên hệ: 0981206317</string>
+    <string name="description">Mô tả: </string>
+    <string name="similar">Các sách tương tự</string>
+    <string name="rank_and_comment">Xếp hạng và đánh giá</string>
+    <string name="evaluate">Gửi đánh giá</string>
+    <string name="add_to_cart">Thêm vào giỏ hàng</string>
+    <string name="page">trang</string>
+    <string name="numOfEvaluate"> lượt đánh giá</string>
 </resources>

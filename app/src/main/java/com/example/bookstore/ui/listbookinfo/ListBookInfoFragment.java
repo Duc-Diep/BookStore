@@ -32,7 +32,6 @@ public class ListBookInfoFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_list_book_info,container,false);
 
-
         return binding.getRoot();
     }
 }

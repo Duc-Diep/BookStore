@@ -21,6 +21,8 @@ import com.example.bookstore.ui.book.Book;
 import com.example.bookstore.ui.book.BookAdapter;
 import com.example.bookstore.R;
 import com.example.bookstore.databinding.FragmentListBookInfoBinding;
+import com.example.bookstore.ui.book.BookItemInfo;
+import com.example.bookstore.ui.book.IonClickBook;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +56,17 @@ public class ListBookFragment extends Fragment {
         });
         listBook= (List<Book>) getArguments().getSerializable("list");
         BookAdapter adapter = new BookAdapter(listBook,getContext());
+        adapter.setIonClickBook(new IonClickBook() {
+            @Override
+            public void onClickItem(Book book) {
+                Fragment fragment = BookItemInfo.newInstance(listBook,book);
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),3, RecyclerView.VERTICAL,false);
         binding.listBook.setAdapter(adapter);
         binding.listBook.setLayoutManager(gridLayoutManager);
@@ -80,6 +93,17 @@ public class ListBookFragment extends Fragment {
                 GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),3, RecyclerView.VERTICAL,false);
                 binding.listBook.setAdapter(adapter);
                 binding.listBook.setLayoutManager(gridLayoutManager);
+                adapter.setIonClickBook(new IonClickBook() {
+                    @Override
+                    public void onClickItem(Book book) {
+                        Fragment fragment = BookItemInfo.newInstance(listBook,book);
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();
+                    }
+                });
             }
         });
         return binding.getRoot();
