@@ -18,6 +18,10 @@
             android:icon="@drawable/ic_local_grocery_store_black_24dp"
             android:title="@string/menu_cart" />
         <item
+            android:id="@+id/nav_history"
+            android:icon="@drawable/history"
+            android:title="@string/history" />
+        <item
             android:id="@+id/nav_other_product"
             android:icon="@drawable/ic_book_black_24dp"
             android:title="@string/menu_other_product" />

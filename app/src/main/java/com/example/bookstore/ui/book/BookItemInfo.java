@@ -51,7 +51,7 @@ public class BookItemInfo extends Fragment {
         Picasso.with(getContext()).load(book.getImageLink()).into(binding.imgBook);
         binding.tvBookName.setText(book.getTitle());
         binding.tvAuthor.setText("Tác giả: "+book.getAuthor());
-        binding.tvNumberOfPage.setText(String.valueOf(book.getNumOfPage()+R.string.page));
+        binding.tvNumberOfPage.setText(String.valueOf(book.getNumOfPage())+" "+getString(R.string.page));
         Locale local =new Locale("vi","VN");
         NumberFormat numberFormat = NumberFormat.getInstance(local);
         String money = numberFormat.format(book.getPrice());
@@ -59,7 +59,7 @@ public class BookItemInfo extends Fragment {
         binding.tvDescrition.setText(book.getDescription());
         binding.tvstarOfBook.setText(String.valueOf(book.getRateStar()));
         binding.tvCategory.setText(book.getCategory());
-        binding.tvNumOfReview.setText(book.getNumOfReview()+R.string.numOfEvaluate);
+        binding.tvNumOfReview.setText(book.getNumOfReview()+" "+getString(R.string.numOfEvaluate));
         binding.btnBackToListBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

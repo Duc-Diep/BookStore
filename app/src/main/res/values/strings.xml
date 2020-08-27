@@ -10,6 +10,7 @@
     <string name="menu_home">Trang chủ</string>
     <string name="menu_cart">Giỏ hàng</string>
     <string name="menu_other_product">Đồ dùng học tập khác</string>
+    <string name="history">Lịch sử mua hàng</string>
     <string name="menu_logout">Đăng xuất</string>
     <string name="menu_search">Tìm kiếm sách</string>
     <string name="offer_list_book">Đề xuất cho bạn</string>
