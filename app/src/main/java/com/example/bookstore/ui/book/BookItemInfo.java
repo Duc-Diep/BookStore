@@ -5,6 +5,7 @@ import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookstore.R;
 import com.example.bookstore.databinding.FragmentBookItemInforBinding;
+import com.example.bookstore.sqlhelper.SQLHelper;
 import com.squareup.picasso.Picasso;
 
 import java.text.NumberFormat;
@@ -29,6 +31,7 @@ public class BookItemInfo extends Fragment {
     Book book;
     List<Book> bookList,similarBook;
     Fragment me = this;
+    SQLHelper sqlHelper;
     public static BookItemInfo newInstance(List<Book> bookList,Book book) {
         
         Bundle bundle = new Bundle();
@@ -43,6 +46,7 @@ public class BookItemInfo extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_book_item_infor,container,false);
+        sqlHelper = new SQLHelper(getContext());
         //get Data
         book = (Book) getArguments().getSerializable("book");
         bookList= (List<Book>) getArguments().getSerializable("list");
@@ -91,6 +95,19 @@ public class BookItemInfo extends Fragment {
                 fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
+            }
+        });
+        binding.btnEvaluate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),getString(R.string.your_evaluate)+" "+binding.rateStar.getRating()+" "+getString(R.string.star),Toast.LENGTH_SHORT).show();
+            }
+        });
+        binding.btnAddToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sqlHelper.InsertBookToCart(book);
+                Toast.makeText(getContext(),getString(R.string.add_to_cart_sucess),Toast.LENGTH_LONG).show();
             }
         });
         return binding.getRoot();

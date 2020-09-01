@@ -22,22 +22,16 @@
             </ImageView>
 
             <EditText
+                android:hint="@string/search"
+                android:drawableLeft="@drawable/border_edt_search"
                 android:layout_weight="10"
-                android:textSize="@dimen/_7sdp"
+                android:textSize="@dimen/_10sdp"
                 android:id="@+id/edt_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
             </EditText>
-            <ImageView
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_search_black_24dp"
-                android:layout_toRightOf="@id/btnBackToHome"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp">
-            </ImageView>
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginTop="@dimen/_10sdp"
             android:layout_below="@+id/layoutTemp"
             android:id="@+id/listBook"
             android:layout_marginBottom="@dimen/_50sdp"

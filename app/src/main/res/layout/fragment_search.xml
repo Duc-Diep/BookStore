@@ -8,12 +8,18 @@
         android:layout_height="match_parent"
         tools:context=".ui.search.SearchByNameFragment"
         >
-        <SearchView
-            android:id="@+id/searchView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </SearchView>
+
+            <EditText
+                android:paddingLeft="@dimen/_5sdp"
+                android:id="@+id/searchView"
+                android:background="@drawable/border_edt_search"
+                android:drawableLeft="@drawable/ic_search_black_24dp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp">
+            </EditText>
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_book_search"
+            android:layout_marginBottom="@dimen/_50sdp"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_below="@id/searchView"
             android:layout_width="match_parent"

@@ -58,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/color_app_bar"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            android:scrollbarFadeDuration="@integer/config_navAnimTime"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>

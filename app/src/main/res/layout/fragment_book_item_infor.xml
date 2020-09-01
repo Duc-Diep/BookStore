@@ -200,7 +200,7 @@
             android:text="@string/add_to_cart"
             android:layout_alignParentBottom="true"
             android:layout_below="@+id/similarBook"
-            android:id="@+id/addToCart"
+            android:id="@+id/btnAddToCart"
             android:layout_marginTop="@dimen/_10sdp"
             android:background="@drawable/btn_add_cart"
             android:layout_width="match_parent"

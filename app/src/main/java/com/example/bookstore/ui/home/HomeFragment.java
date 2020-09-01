@@ -19,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.bookstore.sqlhelper.SQLHelper;
 import com.example.bookstore.ui.book.Book;
 import com.example.bookstore.ui.book.BookAdapter;
 import com.example.bookstore.R;
@@ -38,6 +39,7 @@ public class HomeFragment extends Fragment {
     String url ="https://bookshopb.herokuapp.com/api/books";
     String result = "";
     List<Book> list,list2,list3;
+    SQLHelper sqlHelper;
 
     public static HomeFragment newInstance() {
         
@@ -49,6 +51,8 @@ public class HomeFragment extends Fragment {
     }
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_home,container,false);
+        sqlHelper = new SQLHelper(getContext());
+        list = new ArrayList<>();
         binding.moreNewBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,7 +117,7 @@ public class HomeFragment extends Fragment {
     }
     private void getJson() {
 
-        list = new ArrayList<>();
+
         int id,releaseYear,numOfPage,numOfReview;
         String imageLink,title,author,publisher,description,category;
         double price,rateStar;
@@ -133,12 +137,15 @@ public class HomeFragment extends Fragment {
                 description = object.getString("description");
                 category = object.getString("categoty");
                 rateStar = object.getDouble("rateStar");
-                list.add(new Book(id, imageLink, title, author, publisher, releaseYear, numOfPage,price,rateStar,numOfReview,description,category));
+                Book book = new Book(id, imageLink, title, author, publisher, releaseYear, numOfPage,price,rateStar,numOfReview,description,category);
+                list.add(book);
+                sqlHelper.InsertBookToAllBook(book);
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         //add list 1
         BookAdapter adapter1 = new BookAdapter(list, getContext());
         RecyclerView.LayoutManager layoutManager1 = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
