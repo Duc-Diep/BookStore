@@ -70,6 +70,7 @@
 
         </TextView>
         <RelativeLayout
+            android:id="@+id/layoutStar"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_below="@id/tvPrice"
@@ -92,6 +93,27 @@
 
             </ImageView>
         </RelativeLayout>
+        <TextView
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:textStyle="bold"
+            android:id="@+id/des"
+            android:textSize="@dimen/_15sdp"
+            android:text="@string/description"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_below="@id/layoutStar"
+            android:layout_width="wrap_content"
+            android:layout_toRightOf="@id/cardBook"
+            android:layout_height="wrap_content">
+        </TextView>
+        <TextView
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:text="Hello"
+            android:layout_toRightOf="@id/cardBook"
+            android:layout_below="@+id/des"
+            android:id="@+id/tvDescrition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </TextView>
         <LinearLayout
             android:id="@+id/layout3part"
             android:layout_marginTop="@dimen/_10sdp"
@@ -128,27 +150,10 @@
         </LinearLayout>
 
         <TextView
-            android:textStyle="bold"
-            android:id="@+id/des"
-            android:textSize="@dimen/_15sdp"
-            android:text="@string/description"
             android:layout_marginTop="@dimen/_5sdp"
+            android:textStyle="bold"
+            android:textSize="@dimen/_15sdp"
             android:layout_below="@id/layout3part"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-        </TextView>
-        <TextView
-            android:text="Hello"
-            android:layout_below="@+id/des"
-            android:id="@+id/tvDescrition"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-        </TextView>
-        <TextView
-            android:layout_marginTop="@dimen/_5sdp"
-            android:textStyle="bold"
-            android:textSize="@dimen/_15sdp"
-            android:layout_below="@id/tvDescrition"
             android:id="@+id/tvRankAndComment"
             android:text="@string/rank_and_comment"
             android:layout_width="wrap_content"
@@ -184,6 +189,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:textStyle="bold"
                 android:textSize="@dimen/_15sdp"
                 android:text="@string/similar"
                 android:layout_width="match_parent"

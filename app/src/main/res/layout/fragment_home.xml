@@ -11,20 +11,35 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginBottom="@dimen/_10sdp"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginRight="@dimen/_10sdp"
         tools:context=".ui.home.HomeFragment">
         <ProgressBar
+            android:layout_below="@+id/viewFlipper"
+            android:layout_marginTop="@dimen/_20sdp"
             android:id="@+id/progessbar"
             android:layout_centerInParent="true"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp">
 
         </ProgressBar>
+        <ViewFlipper
+            android:id="@+id/viewFlipper"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_120sdp">
+
+        </ViewFlipper>
         <RelativeLayout
+            android:layout_below="@id/viewFlipper"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/_5sdp"
             android:id="@+id/moreNewBook"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -98,6 +113,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </androidx.recyclerview.widget.RecyclerView>
+     </RelativeLayout>
     </RelativeLayout>
     </ScrollView>
 </layout>

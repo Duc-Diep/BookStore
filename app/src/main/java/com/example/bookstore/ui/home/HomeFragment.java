@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -26,6 +29,7 @@ import com.example.bookstore.R;
 import com.example.bookstore.databinding.FragmentHomeBinding;
 import com.example.bookstore.ui.book.BookItemInfo;
 import com.example.bookstore.ui.book.IonClickBook;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,6 +44,8 @@ public class HomeFragment extends Fragment {
     String result = "";
     List<Book> list,list2,list3;
     SQLHelper sqlHelper;
+    List<String> mangquangcao = new ArrayList<>();
+
 
     public static HomeFragment newInstance() {
         
@@ -53,6 +59,9 @@ public class HomeFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_home,container,false);
         sqlHelper = new SQLHelper(getContext());
         list = new ArrayList<>();
+        //set view Flipper
+        ViewFlipper();
+        //set click
         binding.moreNewBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -207,5 +216,24 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-
+    private void ViewFlipper() {
+        mangquangcao.add("https://res.cloudinary.com/yami177/image/upload/v1598978768/Ma-giam-gia-Fahasa_kn9mcd.png");
+        mangquangcao.add("https://res.cloudinary.com/yami177/image/upload/v1598978870/M%C3%A3-gi%E1%BA%A3m-gi%C3%A1-S%C3%A1ch_evuiwm.jpg");
+        mangquangcao.add("https://res.cloudinary.com/yami177/image/upload/v1598978884/ma-giam-gia-sach_fbnt0s.png");
+        mangquangcao.add("https://res.cloudinary.com/yami177/image/upload/v1598978884/m%C3%A3-gi%E1%BA%A3m-gi%C3%A1-vinabook-1_dfgmq2.jpg");
+        mangquangcao.add("https://res.cloudinary.com/yami177/image/upload/v1598978884/ma-giam-gia-vinabook_m8cvi2.png");
+        mangquangcao.add("https://res.cloudinary.com/yami177/image/upload/v1598978885/voucher_qslawk.png");
+        for (int i = 0; i < mangquangcao.size(); i++) {
+            ImageView imageView = new ImageView(getContext());
+            Picasso.with(getContext()).load(mangquangcao.get(i)).into(imageView);
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            binding.viewFlipper.addView(imageView);
+        }
+        binding.viewFlipper.setFlipInterval(3000);
+        binding.viewFlipper.setAutoStart(true);
+        Animation animation_slide_in = AnimationUtils.loadAnimation(getContext(), R.anim.slide_in_right);
+        Animation animation_slide_out = AnimationUtils.loadAnimation(getContext(), R.anim.slide_out_right);
+        binding.viewFlipper.setInAnimation(animation_slide_in);
+        binding.viewFlipper.setOutAnimation(animation_slide_out);
+    }
 }

@@ -11,7 +11,7 @@ import com.example.bookstore.databinding.ActivityMainBinding;
 import com.example.bookstore.ui.cart.CartFragment;
 import com.example.bookstore.ui.logout.LogOutFragment;
 import com.example.bookstore.ui.otherproduct.OtherProductFragment;
-import com.example.bookstore.ui.search.SearchByNameFragment;
+
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nav_view);
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home,R.id.nav_search, R.id.nav_cart,R.id.nav_history, R.id.nav_other_product,R.id.nav_logout)
+                R.id.nav_home, R.id.nav_cart,R.id.nav_history, R.id.nav_other_product,R.id.nav_logout)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
