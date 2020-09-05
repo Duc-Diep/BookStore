@@ -22,6 +22,11 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     List<Book> list;
     Context context;
     IonClickBook ionClickBook;
+    IlongClickBook ilongClickBook;
+
+    public void setIlongClickBook(IlongClickBook ilongClickBook) {
+        this.ilongClickBook = ilongClickBook;
+    }
 
     public void setIonClickBook(IonClickBook ionClickBook) {
         this.ionClickBook = ionClickBook;
@@ -54,6 +59,13 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 ionClickBook.onClickItem(book);
+            }
+        });
+        holder.layout.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                ilongClickBook.longClickItem(book);
+                return false;
             }
         });
     }

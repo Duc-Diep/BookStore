@@ -1,20 +1,14 @@
 package com.example.bookstore;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.bookstore.databinding.ActivityMainBinding;
-import com.example.bookstore.ui.cart.CartFragment;
-import com.example.bookstore.ui.logout.LogOutFragment;
-import com.example.bookstore.ui.otherproduct.OtherProductFragment;
 
 import com.google.android.material.navigation.NavigationView;
 
-import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
@@ -60,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nav_view);
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_cart,R.id.nav_history, R.id.nav_other_product,R.id.nav_logout)
+                R.id.nav_home, R.id.nav_cart,R.id.nav_history, R.id.nav_other_product,R.id.nav_account)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

@@ -11,7 +11,7 @@
     <string name="menu_cart">Cart</string>
     <string name="menu_other_product">Other school supplies</string>
     <string name="history">Purchase history</string>
-    <string name="menu_logout">Logout</string>
+    <string name="menu_logout">Account</string>
     <string name="menu_search">Search for books</string>
     <string name="offer_list_book">Recommended for you</string>
     <string name="new_list">New update</string>
@@ -28,4 +28,15 @@
     <string name="your_evaluate">You have rated this book </string>
     <string name="star"> star</string>
     <string name="add_to_cart_sucess">Add to cart successfully</string>
+    <string name="buy">Order</string>
+    <string name="nothing">Your shopping cart is empty</string>
+    <string name = "buy_success"> Payment successful </string>
+    <string name = "delete_item_request"> Are you sure you want to remove this item from the cart? </string>
+    <string name="confirm">Confirm</string>
+    <string name = "tutorial"> Hold on to the item to remove it from the cart </string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name = "evaluate_eror"> An error occurred during evaluation, please try again later! </string>
+
+
 </resources>

@@ -22,6 +22,7 @@ import com.example.bookstore.ui.book.BookAdapter;
 import com.example.bookstore.R;
 import com.example.bookstore.databinding.FragmentListBookInfoBinding;
 import com.example.bookstore.ui.book.BookItemInfo;
+import com.example.bookstore.ui.book.IlongClickBook;
 import com.example.bookstore.ui.book.IonClickBook;
 
 import java.util.ArrayList;
@@ -67,6 +68,12 @@ public class ListBookFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
+        adapter.setIlongClickBook(new IlongClickBook() {
+            @Override
+            public void longClickItem(Book book) {
+
+            }
+        });
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),3, RecyclerView.VERTICAL,false);
         binding.listBook.setAdapter(adapter);
         binding.listBook.setLayoutManager(gridLayoutManager);
@@ -102,6 +109,12 @@ public class ListBookFragment extends Fragment {
                         fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
                         fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.commit();
+                    }
+                });
+                adapter.setIlongClickBook(new IlongClickBook() {
+                    @Override
+                    public void longClickItem(Book book) {
+
                     }
                 });
             }

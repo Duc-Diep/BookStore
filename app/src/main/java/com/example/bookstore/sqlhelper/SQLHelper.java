@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.example.bookstore.BookAttribute;
 import com.example.bookstore.ui.book.Book;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class SQLHelper extends SQLiteOpenHelper {
     static final String DB_TABLE_CART = "Cart";
     static final String DB_TABLE_HISTORY = "History";
     static final int DB_VERSION = 1;
+    BookAttribute b;
     SQLiteDatabase sqLiteDatabase;
     ContentValues contentValues;
     public SQLHelper(@Nullable Context context) {
@@ -86,18 +88,18 @@ public class SQLHelper extends SQLiteOpenHelper {
     public void InsertBookToAllBook(Book book) {
         sqLiteDatabase = getWritableDatabase();
         contentValues = new ContentValues();
-        contentValues.put("id", book.getId());
-        contentValues.put("imageLink", book.getImageLink());
-        contentValues.put("title", book.getTitle());
-        contentValues.put("author", book.getAuthor());
-        contentValues.put("publisher", book.getPublisher());
-        contentValues.put("releaseYear", book.getReleaseYear());
-        contentValues.put("numOfPage", book.getNumOfPage());
-        contentValues.put("price", book.getPrice());
-        contentValues.put("rateStar", book.getRateStar());
-        contentValues.put("numOfReview", book.getNumOfReview());
-        contentValues.put("description", book.getDescription());
-        contentValues.put("category", book.getCategory());
+        contentValues.put(b.BOOK_ID, book.getId());
+        contentValues.put(b.BOOK_IMAGELINK, book.getImageLink());
+        contentValues.put(b.BOOK_TITLE, book.getTitle());
+        contentValues.put(b.BOOK_TITLE, book.getAuthor());
+        contentValues.put(b.BOOK_PUBLISHER, book.getPublisher());
+        contentValues.put(b.BOOK_RELEASEYEAR, book.getReleaseYear());
+        contentValues.put(b.BOOK_PAGE, book.getNumOfPage());
+        contentValues.put(b.BOOK_PRICE, book.getPrice());
+        contentValues.put(b.BOOK_RATESTAR, book.getRateStar());
+        contentValues.put(b.BOOK_REVIEW, book.getNumOfReview());
+        contentValues.put(b.BOOK_DESCRIPTION, book.getDescription());
+        contentValues.put(b.BOOK_CATEGORY, book.getCategory());
         sqLiteDatabase.insert(DB_TABLE_ALL_BOOK, null, contentValues);
     }
     public List<Book> getAllBook(){
@@ -132,18 +134,18 @@ public class SQLHelper extends SQLiteOpenHelper {
     public void InsertBookToCart(Book book) {
         sqLiteDatabase = getWritableDatabase();
         contentValues = new ContentValues();
-        contentValues.put("id", book.getId());
-        contentValues.put("imageLink", book.getImageLink());
-        contentValues.put("title", book.getTitle());
-        contentValues.put("author", book.getAuthor());
-        contentValues.put("publisher", book.getPublisher());
-        contentValues.put("releaseYear", book.getReleaseYear());
-        contentValues.put("numOfPage", book.getNumOfPage());
-        contentValues.put("price", book.getPrice());
-        contentValues.put("rateStar", book.getRateStar());
-        contentValues.put("numOfReview", book.getNumOfReview());
-        contentValues.put("description", book.getDescription());
-        contentValues.put("category", book.getCategory());
+        contentValues.put(b.BOOK_ID, book.getId());
+        contentValues.put(b.BOOK_IMAGELINK, book.getImageLink());
+        contentValues.put(b.BOOK_TITLE, book.getTitle());
+        contentValues.put(b.BOOK_TITLE, book.getAuthor());
+        contentValues.put(b.BOOK_PUBLISHER, book.getPublisher());
+        contentValues.put(b.BOOK_RELEASEYEAR, book.getReleaseYear());
+        contentValues.put(b.BOOK_PAGE, book.getNumOfPage());
+        contentValues.put(b.BOOK_PRICE, book.getPrice());
+        contentValues.put(b.BOOK_RATESTAR, book.getRateStar());
+        contentValues.put(b.BOOK_REVIEW, book.getNumOfReview());
+        contentValues.put(b.BOOK_DESCRIPTION, book.getDescription());
+        contentValues.put(b.BOOK_CATEGORY, book.getCategory());
         sqLiteDatabase.insert(DB_TABLE_CART, null, contentValues);
     }
     public List<Book> getAllBookInCart(){
@@ -186,18 +188,18 @@ public class SQLHelper extends SQLiteOpenHelper {
     public void InsertBookToHistory(Book book) {
         sqLiteDatabase = getWritableDatabase();
         contentValues = new ContentValues();
-        contentValues.put("id", book.getId());
-        contentValues.put("imageLink", book.getImageLink());
-        contentValues.put("title", book.getTitle());
-        contentValues.put("author", book.getAuthor());
-        contentValues.put("publisher", book.getPublisher());
-        contentValues.put("releaseYear", book.getReleaseYear());
-        contentValues.put("numOfPage", book.getNumOfPage());
-        contentValues.put("price", book.getPrice());
-        contentValues.put("rateStar", book.getRateStar());
-        contentValues.put("numOfReview", book.getNumOfReview());
-        contentValues.put("description", book.getDescription());
-        contentValues.put("category", book.getCategory());
+        contentValues.put(b.BOOK_ID, book.getId());
+        contentValues.put(b.BOOK_IMAGELINK, book.getImageLink());
+        contentValues.put(b.BOOK_TITLE, book.getTitle());
+        contentValues.put(b.BOOK_TITLE, book.getAuthor());
+        contentValues.put(b.BOOK_PUBLISHER, book.getPublisher());
+        contentValues.put(b.BOOK_RELEASEYEAR, book.getReleaseYear());
+        contentValues.put(b.BOOK_PAGE, book.getNumOfPage());
+        contentValues.put(b.BOOK_PRICE, book.getPrice());
+        contentValues.put(b.BOOK_RATESTAR, book.getRateStar());
+        contentValues.put(b.BOOK_REVIEW, book.getNumOfReview());
+        contentValues.put(b.BOOK_DESCRIPTION, book.getDescription());
+        contentValues.put(b.BOOK_CATEGORY, book.getCategory());
         sqLiteDatabase.insert(DB_TABLE_HISTORY, null, contentValues);
     }
     public List<Book> getAllBookInHistory(){
@@ -227,5 +229,9 @@ public class SQLHelper extends SQLiteOpenHelper {
             list.add(new Book(id,imageLink,title,author,publisher,releaseYear,numOfPage,price,rateStar,numOfReview,description,category));
         }
         return list;
+    }
+    public int deleteHistory() {
+        sqLiteDatabase = getWritableDatabase();
+        return sqLiteDatabase.delete(DB_TABLE_HISTORY, null, null);
     }
 }

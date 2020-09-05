@@ -12,7 +12,7 @@
     <string name="menu_cart">Giỏ hàng</string>
     <string name="menu_other_product">Đồ dùng học tập khác</string>
     <string name="history">Lịch sử mua hàng</string>
-    <string name="menu_logout">Đăng xuất</string>
+    <string name="menu_logout">Tài khoản</string>
     <string name="menu_search">Tìm kiếm sách</string>
     <string name="offer_list_book">Đề xuất cho bạn</string>
     <string name="new_list">Mới cập nhật</string>
@@ -29,5 +29,14 @@
     <string name="your_evaluate">Bạn đã đánh giá cuốn sách này </string>
     <string name="star"> sao</string>
     <string name="add_to_cart_sucess">Thêm vào giỏ hàng thành công </string>
+    <string name="buy">Đặt hàng</string>
+    <string name="nothing">Không có mặt hàng nào trong giỏ hàng</string>
+    <string name = "buy_success"> Thanh toán thành công </string>
+    <string name="delete_item_request">Bạn có chắc chắn muốn xóa mặt hàng này khỏi giỏ hàng?</string>
+    <string name="tutorial">Giữ vào mặt hàng để xóa khỏi giỏ hàng</string>
+    <string name="confirm">Xác nhận</string>
+    <string name="ok">Đồng ý </string>
+    <string name="cancel">Hủy bỏ</string>
+    <string name="evaluate_eror">Có lỗi xả ra trong quá trình đánh giá xin thử lại sau!</string>
 
 </resources>

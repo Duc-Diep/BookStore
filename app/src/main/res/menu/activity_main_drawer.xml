@@ -21,8 +21,8 @@
             android:icon="@drawable/ic_book_black_24dp"
             android:title="@string/menu_other_product" />
         <item
-            android:id="@+id/nav_logout"
-            android:icon="@drawable/logout"
+            android:id="@+id/nav_account"
+            android:icon="@drawable/account"
             android:title="@string/menu_logout" />
     </group>
 </menu>

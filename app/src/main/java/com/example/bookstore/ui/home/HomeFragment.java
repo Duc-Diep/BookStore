@@ -22,12 +22,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.bookstore.BookAttribute;
 import com.example.bookstore.sqlhelper.SQLHelper;
 import com.example.bookstore.ui.book.Book;
 import com.example.bookstore.ui.book.BookAdapter;
 import com.example.bookstore.R;
 import com.example.bookstore.databinding.FragmentHomeBinding;
 import com.example.bookstore.ui.book.BookItemInfo;
+import com.example.bookstore.ui.book.IlongClickBook;
 import com.example.bookstore.ui.book.IonClickBook;
 import com.squareup.picasso.Picasso;
 
@@ -45,6 +47,7 @@ public class HomeFragment extends Fragment {
     List<Book> list,list2,list3;
     SQLHelper sqlHelper;
     List<String> mangquangcao = new ArrayList<>();
+    BookAttribute b;
 
 
     public static HomeFragment newInstance() {
@@ -125,8 +128,6 @@ public class HomeFragment extends Fragment {
 
     }
     private void getJson() {
-
-
         int id,releaseYear,numOfPage,numOfReview;
         String imageLink,title,author,publisher,description,category;
         double price,rateStar;
@@ -134,18 +135,18 @@ public class HomeFragment extends Fragment {
             JSONArray jsonArray = new JSONArray(result);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject object = jsonArray.getJSONObject(i);
-                id = object.getInt("id");
-                releaseYear = object.getInt("releaseYear");
-                numOfPage = object.getInt("numOfPage");
-                price = object.getDouble("price");
-                imageLink = object.getString("imageLink");
-                title = object.getString("title");
-                author = object.getString("author");
-                publisher = object.getString("publisher");
-                numOfReview = object.getInt("numOfReview");
-                description = object.getString("description");
-                category = object.getString("categoty");
-                rateStar = object.getDouble("rateStar");
+                id = object.getInt(b.BOOK_ID);
+                releaseYear = object.getInt(b.BOOK_RELEASEYEAR);
+                numOfPage = object.getInt(b.BOOK_PAGE);
+                price = object.getDouble(b.BOOK_PRICE);
+                imageLink = object.getString(b.BOOK_IMAGELINK);
+                title = object.getString(b.BOOK_TITLE);
+                author = object.getString(b.BOOK_AUTHOR);
+                publisher = object.getString(b.BOOK_PUBLISHER);
+                numOfReview = object.getInt(b.BOOK_REVIEW);
+                description = object.getString(b.BOOK_DESCRIPTION);
+                category = object.getString(b.BOOK_CATEGOTY);
+                rateStar = object.getDouble(b.BOOK_RATESTAR);
                 Book book = new Book(id, imageLink, title, author, publisher, releaseYear, numOfPage,price,rateStar,numOfReview,description,category);
                 list.add(book);
                 sqlHelper.InsertBookToAllBook(book);
@@ -172,6 +173,12 @@ public class HomeFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
+        adapter1.setIlongClickBook(new IlongClickBook() {
+            @Override
+            public void longClickItem(Book book) {
+
+            }
+        });
         //add list 2
         list2 = new ArrayList<>();
         for(int i =list.size()-1;i>=0;i--){
@@ -190,6 +197,12 @@ public class HomeFragment extends Fragment {
                 fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
+            }
+        });
+        adapter2.setIlongClickBook(new IlongClickBook() {
+            @Override
+            public void longClickItem(Book book) {
+
             }
         });
         //add list3
@@ -215,7 +228,14 @@ public class HomeFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
+        adapter3.setIlongClickBook(new IlongClickBook() {
+            @Override
+            public void longClickItem(Book book) {
+
+            }
+        });
     }
+    //ViewFlipper
     private void ViewFlipper() {
         mangquangcao.add("https://res.cloudinary.com/yami177/image/upload/v1598978768/Ma-giam-gia-Fahasa_kn9mcd.png");
         mangquangcao.add("https://res.cloudinary.com/yami177/image/upload/v1598978870/M%C3%A3-gi%E1%BA%A3m-gi%C3%A1-S%C3%A1ch_evuiwm.jpg");

@@ -32,8 +32,8 @@
         tools:layout="@layout/fragment_other_product" />
 
     <fragment
-        android:id="@+id/nav_logout"
-        android:name="com.example.bookstore.ui.logout.LogOutFragment"
+        android:id="@+id/nav_account"
+        android:name="com.example.bookstore.ui.account.AccountFragment"
         android:label="@string/menu_logout"
-        tools:layout="@layout/fragment_logout" />
+        tools:layout="@layout/fragment_account" />
 </navigation>
