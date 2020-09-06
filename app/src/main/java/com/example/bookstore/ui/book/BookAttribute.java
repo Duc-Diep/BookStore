@@ -1,4 +1,4 @@
-package com.example.bookstore;
+package com.example.bookstore.ui.book;
 
 public class BookAttribute {
     public static final String BOOK_ID = "id";

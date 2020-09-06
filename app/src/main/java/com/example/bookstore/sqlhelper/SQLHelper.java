@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.example.bookstore.BookAttribute;
+import com.example.bookstore.ui.book.BookAttribute;
 import com.example.bookstore.ui.book.Book;
 
 import java.util.ArrayList;
@@ -114,18 +114,18 @@ public class SQLHelper extends SQLiteOpenHelper {
                 null,
                 null);
         while (cursor.moveToNext()){
-            int id = cursor.getInt(cursor.getColumnIndex("id"));
-            String imageLink =cursor.getString(cursor.getColumnIndex("imageLink"));
-            String title =cursor.getString(cursor.getColumnIndex("title"));
-            String author =cursor.getString(cursor.getColumnIndex("author"));
-            String publisher =cursor.getString(cursor.getColumnIndex("publisher"));
-            int releaseYear = cursor.getInt(cursor.getColumnIndex("releaseYear"));
-            int numOfPage = cursor.getInt(cursor.getColumnIndex("numOfPage"));
-            double price = cursor.getDouble(cursor.getColumnIndex("price"));
-            double rateStar = cursor.getDouble(cursor.getColumnIndex("rateStar"));
-            int numOfReview = cursor.getInt(cursor.getColumnIndex("numOfReview"));
-            String description =cursor.getString(cursor.getColumnIndex("description"));
-            String category =cursor.getString(cursor.getColumnIndex("category"));
+            int id = cursor.getInt(cursor.getColumnIndex(b.BOOK_ID));
+            String imageLink =cursor.getString(cursor.getColumnIndex(b.BOOK_IMAGELINK));
+            String title =cursor.getString(cursor.getColumnIndex(b.BOOK_TITLE));
+            String author =cursor.getString(cursor.getColumnIndex(b.BOOK_AUTHOR));
+            String publisher =cursor.getString(cursor.getColumnIndex(b.BOOK_PUBLISHER));
+            int releaseYear = cursor.getInt(cursor.getColumnIndex(b.BOOK_RELEASEYEAR));
+            int numOfPage = cursor.getInt(cursor.getColumnIndex(b.BOOK_PAGE));
+            double price = cursor.getDouble(cursor.getColumnIndex(b.BOOK_PRICE));
+            double rateStar = cursor.getDouble(cursor.getColumnIndex(b.BOOK_RATESTAR));
+            int numOfReview = cursor.getInt(cursor.getColumnIndex(b.BOOK_REVIEW));
+            String description =cursor.getString(cursor.getColumnIndex(b.BOOK_DESCRIPTION));
+            String category =cursor.getString(cursor.getColumnIndex(b.BOOK_CATEGORY));
             list.add(new Book(id,imageLink,title,author,publisher,releaseYear,numOfPage,price,rateStar,numOfReview,description,category));
         }
         return list;
@@ -160,18 +160,18 @@ public class SQLHelper extends SQLiteOpenHelper {
                 null,
                 null);
         while (cursor.moveToNext()){
-            int id = cursor.getInt(cursor.getColumnIndex("id"));
-            String imageLink =cursor.getString(cursor.getColumnIndex("imageLink"));
-            String title =cursor.getString(cursor.getColumnIndex("title"));
-            String author =cursor.getString(cursor.getColumnIndex("author"));
-            String publisher =cursor.getString(cursor.getColumnIndex("publisher"));
-            int releaseYear = cursor.getInt(cursor.getColumnIndex("releaseYear"));
-            int numOfPage = cursor.getInt(cursor.getColumnIndex("numOfPage"));
-            double price = cursor.getDouble(cursor.getColumnIndex("price"));
-            double rateStar = cursor.getDouble(cursor.getColumnIndex("rateStar"));
-            int numOfReview = cursor.getInt(cursor.getColumnIndex("numOfReview"));
-            String description =cursor.getString(cursor.getColumnIndex("description"));
-            String category =cursor.getString(cursor.getColumnIndex("category"));
+            int id = cursor.getInt(cursor.getColumnIndex(b.BOOK_ID));
+            String imageLink =cursor.getString(cursor.getColumnIndex(b.BOOK_IMAGELINK));
+            String title =cursor.getString(cursor.getColumnIndex(b.BOOK_TITLE));
+            String author =cursor.getString(cursor.getColumnIndex(b.BOOK_AUTHOR));
+            String publisher =cursor.getString(cursor.getColumnIndex(b.BOOK_PUBLISHER));
+            int releaseYear = cursor.getInt(cursor.getColumnIndex(b.BOOK_RELEASEYEAR));
+            int numOfPage = cursor.getInt(cursor.getColumnIndex(b.BOOK_PAGE));
+            double price = cursor.getDouble(cursor.getColumnIndex(b.BOOK_PRICE));
+            double rateStar = cursor.getDouble(cursor.getColumnIndex(b.BOOK_RATESTAR));
+            int numOfReview = cursor.getInt(cursor.getColumnIndex(b.BOOK_REVIEW));
+            String description =cursor.getString(cursor.getColumnIndex(b.BOOK_DESCRIPTION));
+            String category =cursor.getString(cursor.getColumnIndex(b.BOOK_CATEGORY));
             list.add(new Book(id,imageLink,title,author,publisher,releaseYear,numOfPage,price,rateStar,numOfReview,description,category));
         }
         return list;
@@ -214,18 +214,18 @@ public class SQLHelper extends SQLiteOpenHelper {
                 null,
                 null);
         while (cursor.moveToNext()){
-            int id = cursor.getInt(cursor.getColumnIndex("id"));
-            String imageLink =cursor.getString(cursor.getColumnIndex("imageLink"));
-            String title =cursor.getString(cursor.getColumnIndex("title"));
-            String author =cursor.getString(cursor.getColumnIndex("author"));
-            String publisher =cursor.getString(cursor.getColumnIndex("publisher"));
-            int releaseYear = cursor.getInt(cursor.getColumnIndex("releaseYear"));
-            int numOfPage = cursor.getInt(cursor.getColumnIndex("numOfPage"));
-            double price = cursor.getDouble(cursor.getColumnIndex("price"));
-            double rateStar = cursor.getDouble(cursor.getColumnIndex("rateStar"));
-            int numOfReview = cursor.getInt(cursor.getColumnIndex("numOfReview"));
-            String description =cursor.getString(cursor.getColumnIndex("description"));
-            String category =cursor.getString(cursor.getColumnIndex("category"));
+            int id = cursor.getInt(cursor.getColumnIndex(b.BOOK_ID));
+            String imageLink =cursor.getString(cursor.getColumnIndex(b.BOOK_IMAGELINK));
+            String title =cursor.getString(cursor.getColumnIndex(b.BOOK_TITLE));
+            String author =cursor.getString(cursor.getColumnIndex(b.BOOK_AUTHOR));
+            String publisher =cursor.getString(cursor.getColumnIndex(b.BOOK_PUBLISHER));
+            int releaseYear = cursor.getInt(cursor.getColumnIndex(b.BOOK_RELEASEYEAR));
+            int numOfPage = cursor.getInt(cursor.getColumnIndex(b.BOOK_PAGE));
+            double price = cursor.getDouble(cursor.getColumnIndex(b.BOOK_PRICE));
+            double rateStar = cursor.getDouble(cursor.getColumnIndex(b.BOOK_RATESTAR));
+            int numOfReview = cursor.getInt(cursor.getColumnIndex(b.BOOK_REVIEW));
+            String description =cursor.getString(cursor.getColumnIndex(b.BOOK_DESCRIPTION));
+            String category =cursor.getString(cursor.getColumnIndex(b.BOOK_CATEGORY));
             list.add(new Book(id,imageLink,title,author,publisher,releaseYear,numOfPage,price,rateStar,numOfReview,description,category));
         }
         return list;
