@@ -3,12 +3,11 @@
     <RelativeLayout
         android:background="@color/backgr_home"
         android:layout_width="match_parent"
-        android:layout_marginBottom="@dimen/_50sdp"
         android:layout_height="match_parent">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listHistory"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
         </androidx.recyclerview.widget.RecyclerView>
         <Button
             android:text="@string/delete_history"

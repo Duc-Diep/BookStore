@@ -23,6 +23,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.bookstore.event.Bus;
+import com.example.bookstore.event.EHideToolBar;
+import com.example.bookstore.event.ELogin;
 import com.example.bookstore.ui.book.BookAttribute;
 import com.example.bookstore.sqlhelper.SQLHelper;
 import com.example.bookstore.ui.book.Book;
@@ -69,6 +72,7 @@ public class HomeFragment extends Fragment {
         binding.moreNewBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bus.getInstance().post(new EHideToolBar());
                 Fragment fragment = ListBookFragment.newInstance(list);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -81,6 +85,7 @@ public class HomeFragment extends Fragment {
         binding.moreHotBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bus.getInstance().post(new EHideToolBar());
                 Fragment fragment = ListBookFragment.newInstance(list2);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -93,6 +98,7 @@ public class HomeFragment extends Fragment {
         binding.moreOfferBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bus.getInstance().post(new EHideToolBar());
                 Fragment fragment = ListBookFragment.newInstance(list3);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -165,6 +171,7 @@ public class HomeFragment extends Fragment {
         adapter1.setIonClickBook(new IonClickBook() {
             @Override
             public void onClickItem(Book book) {
+                Bus.getInstance().post(new EHideToolBar());
                 Fragment fragment = BookItemInfo.newInstance(list,book);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -192,6 +199,7 @@ public class HomeFragment extends Fragment {
         adapter2.setIonClickBook(new IonClickBook() {
             @Override
             public void onClickItem(Book book) {
+                Bus.getInstance().post(new EHideToolBar());
                 Fragment fragment = BookItemInfo.newInstance(list,book);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -221,6 +229,7 @@ public class HomeFragment extends Fragment {
         adapter3.setIonClickBook(new IonClickBook() {
             @Override
             public void onClickItem(Book book) {
+                Bus.getInstance().post(new EHideToolBar());
                 Fragment fragment = BookItemInfo.newInstance(list,book);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -257,5 +266,16 @@ public class HomeFragment extends Fragment {
         Animation animation_slide_out = AnimationUtils.loadAnimation(getContext(), R.anim.slide_out_right);
         binding.viewFlipper.setInAnimation(animation_slide_in);
         binding.viewFlipper.setOutAnimation(animation_slide_out);
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        Bus.getInstance().register(getContext());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Bus.getInstance().register(getContext());
     }
 }

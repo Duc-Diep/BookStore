@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookstore.R;
 import com.example.bookstore.databinding.FragmentCartBinding;
+import com.example.bookstore.event.Bus;
+import com.example.bookstore.event.EHideToolBar;
 import com.example.bookstore.sqlhelper.SQLHelper;
 import com.example.bookstore.ui.book.Book;
 import com.example.bookstore.ui.book.BookAdapter;
@@ -54,6 +56,7 @@ public class CartFragment extends Fragment {
         adapter.setIonClickBook(new IonClickBook() {
             @Override
             public void onClickItem(Book book) {
+                Bus.getInstance().post(new EHideToolBar());
                 Fragment fragment = BookItemInfo.newInstance(allBook, book);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

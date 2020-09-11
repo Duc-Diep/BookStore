@@ -36,10 +36,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_below="@+id/layoutTemp"
             android:id="@+id/listBook"
-            android:layout_marginBottom="@dimen/_50sdp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
         </androidx.recyclerview.widget.RecyclerView>
     </RelativeLayout>
 </layout>

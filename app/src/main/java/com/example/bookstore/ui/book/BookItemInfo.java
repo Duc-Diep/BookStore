@@ -25,6 +25,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.bookstore.R;
 import com.example.bookstore.databinding.FragmentBookItemInforBinding;
+import com.example.bookstore.event.Bus;
+import com.example.bookstore.event.EHideToolBar;
+import com.example.bookstore.event.EShowToolBar;
 import com.example.bookstore.sqlhelper.SQLHelper;
 import com.example.bookstore.ui.home.ListBookFragment;
 import com.squareup.picasso.Picasso;
@@ -88,6 +91,7 @@ public class BookItemInfo extends Fragment {
         binding.btnBackToListBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bus.getInstance().post(new EShowToolBar());
                 FragmentManager manager =getActivity().getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
                 manager.getBackStackEntryCount();

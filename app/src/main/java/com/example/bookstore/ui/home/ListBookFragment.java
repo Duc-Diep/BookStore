@@ -17,6 +17,9 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookstore.event.Bus;
+import com.example.bookstore.event.EHideToolBar;
+import com.example.bookstore.event.EShowToolBar;
 import com.example.bookstore.ui.book.Book;
 import com.example.bookstore.ui.book.BookAdapter;
 import com.example.bookstore.R;
@@ -48,6 +51,7 @@ public class ListBookFragment extends Fragment {
         binding.btnBackToHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bus.getInstance().post(new EShowToolBar());
                 FragmentManager manager =getActivity().getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
                 manager.getBackStackEntryCount();

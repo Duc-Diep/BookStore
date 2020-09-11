@@ -44,7 +44,7 @@
     <string name="input_password">Nhập mật khẩu</string>
     <string name="forget_pass">Quên mật khẩu?</string>
     <string name="newbie">Bạn chưa có tài khoản? </string>
-    <string name="sign_up">Đăng ký tài khoản ngay</string>
+    <string name="sign_up">Đăng ký ngay</string>
     <string name="sign_in">Đăng nhập</string>
     <string name="sign_out">Đăng xuất</string>
     <string name="email_address">Địa chỉ email: </string>
