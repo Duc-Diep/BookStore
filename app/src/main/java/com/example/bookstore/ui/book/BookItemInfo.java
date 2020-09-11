@@ -26,11 +26,13 @@ import com.android.volley.toolbox.Volley;
 import com.example.bookstore.R;
 import com.example.bookstore.databinding.FragmentBookItemInforBinding;
 import com.example.bookstore.sqlhelper.SQLHelper;
+import com.example.bookstore.ui.home.ListBookFragment;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,8 +75,9 @@ public class BookItemInfo extends Fragment {
         binding.tvPrice.setText(money+" đ");
         binding.tvDescrition.setText(book.getDescription());
         if(book.getNumOfReview()>0){
+            DecimalFormat decimalFormat = new DecimalFormat("#.#");
             double star = book.getRateStar()/book.getNumOfReview();
-            binding.tvstarOfBook.setText(String.valueOf(star));
+            binding.tvstarOfBook.setText(String.valueOf(decimalFormat.format(star)));
         }
         else{
             binding.tvstarOfBook.setText("0");
@@ -90,6 +93,12 @@ public class BookItemInfo extends Fragment {
                 manager.getBackStackEntryCount();
                 transaction.remove(me);
                 transaction.commit();
+//                Fragment fragment = ListBookFragment.newInstance(bookList);
+//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
+//                fragmentTransaction.addToBackStack(null);
+//                fragmentTransaction.commit();
             }
         });
         //set adater
@@ -172,6 +181,13 @@ public class BookItemInfo extends Fragment {
                     }
                 };
                 requestQueue.add(stringRequest);
+
+                DecimalFormat decimalFormat = new DecimalFormat("#.#");
+                double star = (book.getRateStar()+binding.rateStar.getRating())/(book.getNumOfReview()+1);
+                binding.tvstarOfBook.setText(String.valueOf(decimalFormat.format(star)));
+                binding.tvNumOfReview.setText((book.getNumOfReview()+1)+" "+getString(R.string.numOfEvaluate));
+                //double star = (book.getRateStar()+1)/(book.getNumOfReview()+1);
+                //binding.tvstarOfBook.setText(String.valueOf(star));
 
             }
         });

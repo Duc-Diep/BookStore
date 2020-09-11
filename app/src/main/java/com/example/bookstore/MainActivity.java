@@ -30,26 +30,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
         //set language
-        btnEng = findViewById(R.id.btnEnglish);
-        btnVi = findViewById(R.id.btnTiengViet);
-        btnEng.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btnEng.setBackgroundResource(R.drawable.bgr_language);
-                btnVi.setBackgroundResource(R.drawable.bgr_language_none);
-            }
-        });
-        btnVi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btnVi.setBackgroundResource(R.drawable.bgr_language);
-                btnEng.setBackgroundResource(R.drawable.bgr_language_none);
-            }
-        });
+//        btnEng = findViewById(R.id.btnEnglish);
+//        btnVi = findViewById(R.id.btnTiengViet);
+//        btnEng.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                btnEng.setBackgroundResource(R.drawable.bgr_language);
+//                btnVi.setBackgroundResource(R.drawable.bgr_language_none);
+//            }
+//        });
+//        btnVi.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                btnVi.setBackgroundResource(R.drawable.bgr_language);
+//                btnEng.setBackgroundResource(R.drawable.bgr_language_none);
+//            }
+//        });
 
         //set ToolBar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+//        toolbar.setVisibility(View.GONE);
         final DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 

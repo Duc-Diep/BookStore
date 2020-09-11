@@ -7,7 +7,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/_50sdp"
         tools:context=".ui.cart.CartFragment">
         <androidx.recyclerview.widget.RecyclerView
@@ -18,7 +18,6 @@
         <Button
             android:id="@+id/btnBuy"
             android:text="@string/buy"
-            android:layout_marginBottom="@dimen/_50sdp"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="@dimen/_20sdp"
             android:layout_marginRight="@dimen/_20sdp"

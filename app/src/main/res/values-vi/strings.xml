@@ -3,8 +3,8 @@
     <string name="app_name">BookStore</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Username</string>
-    <string name="nav_header_subtitle">ducdiep2k@gmail.com</string>
+    <string name="user_name">Username</string>
+    <string name="email">ducdiep2k@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
@@ -12,7 +12,7 @@
     <string name="menu_cart">Giỏ hàng</string>
     <string name="menu_other_product">Đồ dùng học tập khác</string>
     <string name="history">Lịch sử mua hàng</string>
-    <string name="menu_logout">Tài khoản</string>
+    <string name="menu_account">Tài khoản</string>
     <string name="menu_search">Tìm kiếm sách</string>
     <string name="offer_list_book">Đề xuất cho bạn</string>
     <string name="new_list">Mới cập nhật</string>
@@ -38,5 +38,19 @@
     <string name="ok">Đồng ý </string>
     <string name="cancel">Hủy bỏ</string>
     <string name="evaluate_eror">Có lỗi xả ra trong quá trình đánh giá xin thử lại sau!</string>
+
+<!--    login-->
+    <string name="input_username">Nhập tên tài khoản hoặc gmail</string>
+    <string name="input_password">Nhập mật khẩu</string>
+    <string name="forget_pass">Quên mật khẩu?</string>
+    <string name="newbie">Bạn chưa có tài khoản? </string>
+    <string name="sign_up">Đăng ký tài khoản ngay</string>
+    <string name="sign_in">Đăng nhập</string>
+    <string name="sign_out">Đăng xuất</string>
+    <string name="email_address">Địa chỉ email: </string>
+    <string name="phone_number">Số điện thoại: </string>
+    <string name="address">Địa chỉ: </string>
+    <string name="un_login">Bạn chưa đăng nhập!</string>
+    <string name="delete_history">Xóa lịch sử</string>
 
 </resources>

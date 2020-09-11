@@ -5,11 +5,12 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.cart.CartFragment">
+        android:layout_height="@dimen/_500sdp"
+        android:background="@color/backgr_home"
+        tools:context=".ui.otherproduct.OtherProductFragment">
         <TextView
             android:layout_centerInParent="true"
-            android:id="@+id/text_gallery"
+            android:id="@+id/other"
             android:text="Đang cập nhật"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

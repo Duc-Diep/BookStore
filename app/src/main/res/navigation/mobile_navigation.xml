@@ -34,6 +34,6 @@
     <fragment
         android:id="@+id/nav_account"
         android:name="com.example.bookstore.ui.account.AccountFragment"
-        android:label="@string/menu_logout"
+        android:label="@string/menu_account"
         tools:layout="@layout/fragment_account" />
 </navigation>

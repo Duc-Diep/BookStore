@@ -2,8 +2,8 @@
     <string name="app_name">BookStore</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Username</string>
-    <string name="nav_header_subtitle">ducdiep2k@gmail.com</string>
+    <string name="user_name">Username</string>
+    <string name="email">ducdiep2k@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
@@ -11,7 +11,7 @@
     <string name="menu_cart">Cart</string>
     <string name="menu_other_product">Other school supplies</string>
     <string name="history">Purchase history</string>
-    <string name="menu_logout">Account</string>
+    <string name="menu_account">Account</string>
     <string name="menu_search">Search for books</string>
     <string name="offer_list_book">Recommended for you</string>
     <string name="new_list">New update</string>
@@ -30,13 +30,25 @@
     <string name="add_to_cart_sucess">Add to cart successfully</string>
     <string name="buy">Order</string>
     <string name="nothing">Your shopping cart is empty</string>
-    <string name = "buy_success"> Payment successful </string>
-    <string name = "delete_item_request"> Are you sure you want to remove this item from the cart? </string>
+    <string name="buy_success"> Payment successful </string>
+    <string name="delete_item_request"> Are you sure you want to remove this item from the cart? </string>
     <string name="confirm">Confirm</string>
-    <string name = "tutorial"> Hold on to the item to remove it from the cart </string>
+    <string name="tutorial"> Hold on to the item to remove it from the cart </string>
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
-    <string name = "evaluate_eror"> An error occurred during evaluation, please try again later! </string>
+    <string name="evaluate_eror"> An error occurred during evaluation, please try again later! </string>
 
-
+<!--    login-->
+    <string name = "input_username"> Enter your username or gmail </string>
+    <string name = "input_password"> Enter password </string>
+    <string name = "forget_pass"> Forgot password? </string>
+    <string name = "newbie"> Don\'t have an account yet? </string>
+    <string name = "sign_up"> Register now </string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_out">Log out</string>
+    <string name="email_address">Email Address: </string>
+    <string name="phone_number">Phone Number: </string>
+    <string name="address">Address: </string>
+    <string name = "un_login"> You are not logged in yet! </string>
+    <string name="delete_history">Delete History</string>
 </resources>
