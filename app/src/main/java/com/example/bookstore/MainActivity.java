@@ -1,10 +1,10 @@
 package com.example.bookstore;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 import com.example.bookstore.databinding.ActivityMainBinding;
 
@@ -24,11 +24,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import static com.example.bookstore.AccountAttribute.ACCOUNT_STATUS;
+import static com.example.bookstore.AccountAttribute.SHARE_PRE_NAME;
+
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     private AppBarConfiguration mAppBarConfiguration;
     private static final String TAG = "MainActivity";
-    Button btnVi,btnEng;
+    //Button btnVi,btnEng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
     public void Event(ELogin eLogin){
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+        finish();
     }
 
 }

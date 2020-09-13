@@ -14,6 +14,19 @@ import com.example.bookstore.ui.book.Book;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.bookstore.ui.book.BookAttribute.BOOK_AUTHOR;
+import static com.example.bookstore.ui.book.BookAttribute.BOOK_CATEGORY;
+import static com.example.bookstore.ui.book.BookAttribute.BOOK_DESCRIPTION;
+import static com.example.bookstore.ui.book.BookAttribute.BOOK_ID;
+import static com.example.bookstore.ui.book.BookAttribute.BOOK_IMAGELINK;
+import static com.example.bookstore.ui.book.BookAttribute.BOOK_PAGE;
+import static com.example.bookstore.ui.book.BookAttribute.BOOK_PRICE;
+import static com.example.bookstore.ui.book.BookAttribute.BOOK_PUBLISHER;
+import static com.example.bookstore.ui.book.BookAttribute.BOOK_RATESTAR;
+import static com.example.bookstore.ui.book.BookAttribute.BOOK_RELEASEYEAR;
+import static com.example.bookstore.ui.book.BookAttribute.BOOK_REVIEW;
+import static com.example.bookstore.ui.book.BookAttribute.BOOK_TITLE;
+
 public class SQLHelper extends SQLiteOpenHelper {
     private static final String TAG = "SQLHelper";
     static final String DB_NAME = "BookStore.db";
@@ -21,7 +34,6 @@ public class SQLHelper extends SQLiteOpenHelper {
     static final String DB_TABLE_CART = "Cart";
     static final String DB_TABLE_HISTORY = "History";
     static final int DB_VERSION = 1;
-    BookAttribute b;
     SQLiteDatabase sqLiteDatabase;
     ContentValues contentValues;
     public SQLHelper(@Nullable Context context) {
@@ -88,18 +100,18 @@ public class SQLHelper extends SQLiteOpenHelper {
     public void InsertBookToAllBook(Book book) {
         sqLiteDatabase = getWritableDatabase();
         contentValues = new ContentValues();
-        contentValues.put(b.BOOK_ID, book.getId());
-        contentValues.put(b.BOOK_IMAGELINK, book.getImageLink());
-        contentValues.put(b.BOOK_TITLE, book.getTitle());
-        contentValues.put(b.BOOK_TITLE, book.getAuthor());
-        contentValues.put(b.BOOK_PUBLISHER, book.getPublisher());
-        contentValues.put(b.BOOK_RELEASEYEAR, book.getReleaseYear());
-        contentValues.put(b.BOOK_PAGE, book.getNumOfPage());
-        contentValues.put(b.BOOK_PRICE, book.getPrice());
-        contentValues.put(b.BOOK_RATESTAR, book.getRateStar());
-        contentValues.put(b.BOOK_REVIEW, book.getNumOfReview());
-        contentValues.put(b.BOOK_DESCRIPTION, book.getDescription());
-        contentValues.put(b.BOOK_CATEGORY, book.getCategory());
+        contentValues.put(BOOK_ID, book.getId());
+        contentValues.put(BOOK_IMAGELINK, book.getImageLink());
+        contentValues.put(BOOK_TITLE, book.getTitle());
+        contentValues.put(BOOK_AUTHOR, book.getAuthor());
+        contentValues.put(BOOK_PUBLISHER, book.getPublisher());
+        contentValues.put(BOOK_RELEASEYEAR, book.getReleaseYear());
+        contentValues.put(BOOK_PAGE, book.getNumOfPage());
+        contentValues.put(BOOK_PRICE, book.getPrice());
+        contentValues.put(BOOK_RATESTAR, book.getRateStar());
+        contentValues.put(BOOK_REVIEW, book.getNumOfReview());
+        contentValues.put(BOOK_DESCRIPTION, book.getDescription());
+        contentValues.put(BOOK_CATEGORY, book.getCategory());
         sqLiteDatabase.insert(DB_TABLE_ALL_BOOK, null, contentValues);
     }
     public List<Book> getAllBook(){
@@ -114,18 +126,18 @@ public class SQLHelper extends SQLiteOpenHelper {
                 null,
                 null);
         while (cursor.moveToNext()){
-            int id = cursor.getInt(cursor.getColumnIndex(b.BOOK_ID));
-            String imageLink =cursor.getString(cursor.getColumnIndex(b.BOOK_IMAGELINK));
-            String title =cursor.getString(cursor.getColumnIndex(b.BOOK_TITLE));
-            String author =cursor.getString(cursor.getColumnIndex(b.BOOK_AUTHOR));
-            String publisher =cursor.getString(cursor.getColumnIndex(b.BOOK_PUBLISHER));
-            int releaseYear = cursor.getInt(cursor.getColumnIndex(b.BOOK_RELEASEYEAR));
-            int numOfPage = cursor.getInt(cursor.getColumnIndex(b.BOOK_PAGE));
-            double price = cursor.getDouble(cursor.getColumnIndex(b.BOOK_PRICE));
-            double rateStar = cursor.getDouble(cursor.getColumnIndex(b.BOOK_RATESTAR));
-            int numOfReview = cursor.getInt(cursor.getColumnIndex(b.BOOK_REVIEW));
-            String description =cursor.getString(cursor.getColumnIndex(b.BOOK_DESCRIPTION));
-            String category =cursor.getString(cursor.getColumnIndex(b.BOOK_CATEGORY));
+            int id = cursor.getInt(cursor.getColumnIndex(BOOK_ID));
+            String imageLink =cursor.getString(cursor.getColumnIndex(BOOK_IMAGELINK));
+            String title =cursor.getString(cursor.getColumnIndex(BOOK_TITLE));
+            String author =cursor.getString(cursor.getColumnIndex(BOOK_AUTHOR));
+            String publisher =cursor.getString(cursor.getColumnIndex(BOOK_PUBLISHER));
+            int releaseYear = cursor.getInt(cursor.getColumnIndex(BOOK_RELEASEYEAR));
+            int numOfPage = cursor.getInt(cursor.getColumnIndex(BOOK_PAGE));
+            double price = cursor.getDouble(cursor.getColumnIndex(BOOK_PRICE));
+            double rateStar = cursor.getDouble(cursor.getColumnIndex(BOOK_RATESTAR));
+            int numOfReview = cursor.getInt(cursor.getColumnIndex(BOOK_REVIEW));
+            String description =cursor.getString(cursor.getColumnIndex(BOOK_DESCRIPTION));
+            String category =cursor.getString(cursor.getColumnIndex(BOOK_CATEGORY));
             list.add(new Book(id,imageLink,title,author,publisher,releaseYear,numOfPage,price,rateStar,numOfReview,description,category));
         }
         return list;
@@ -134,18 +146,18 @@ public class SQLHelper extends SQLiteOpenHelper {
     public void InsertBookToCart(Book book) {
         sqLiteDatabase = getWritableDatabase();
         contentValues = new ContentValues();
-        contentValues.put(b.BOOK_ID, book.getId());
-        contentValues.put(b.BOOK_IMAGELINK, book.getImageLink());
-        contentValues.put(b.BOOK_TITLE, book.getTitle());
-        contentValues.put(b.BOOK_TITLE, book.getAuthor());
-        contentValues.put(b.BOOK_PUBLISHER, book.getPublisher());
-        contentValues.put(b.BOOK_RELEASEYEAR, book.getReleaseYear());
-        contentValues.put(b.BOOK_PAGE, book.getNumOfPage());
-        contentValues.put(b.BOOK_PRICE, book.getPrice());
-        contentValues.put(b.BOOK_RATESTAR, book.getRateStar());
-        contentValues.put(b.BOOK_REVIEW, book.getNumOfReview());
-        contentValues.put(b.BOOK_DESCRIPTION, book.getDescription());
-        contentValues.put(b.BOOK_CATEGORY, book.getCategory());
+        contentValues.put(BOOK_ID, book.getId());
+        contentValues.put(BOOK_IMAGELINK, book.getImageLink());
+        contentValues.put(BOOK_TITLE, book.getTitle());
+        contentValues.put(BOOK_AUTHOR, book.getAuthor());
+        contentValues.put(BOOK_PUBLISHER, book.getPublisher());
+        contentValues.put(BOOK_RELEASEYEAR, book.getReleaseYear());
+        contentValues.put(BOOK_PAGE, book.getNumOfPage());
+        contentValues.put(BOOK_PRICE, book.getPrice());
+        contentValues.put(BOOK_RATESTAR, book.getRateStar());
+        contentValues.put(BOOK_REVIEW, book.getNumOfReview());
+        contentValues.put(BOOK_DESCRIPTION, book.getDescription());
+        contentValues.put(BOOK_CATEGORY, book.getCategory());
         sqLiteDatabase.insert(DB_TABLE_CART, null, contentValues);
     }
     public List<Book> getAllBookInCart(){
@@ -160,18 +172,18 @@ public class SQLHelper extends SQLiteOpenHelper {
                 null,
                 null);
         while (cursor.moveToNext()){
-            int id = cursor.getInt(cursor.getColumnIndex(b.BOOK_ID));
-            String imageLink =cursor.getString(cursor.getColumnIndex(b.BOOK_IMAGELINK));
-            String title =cursor.getString(cursor.getColumnIndex(b.BOOK_TITLE));
-            String author =cursor.getString(cursor.getColumnIndex(b.BOOK_AUTHOR));
-            String publisher =cursor.getString(cursor.getColumnIndex(b.BOOK_PUBLISHER));
-            int releaseYear = cursor.getInt(cursor.getColumnIndex(b.BOOK_RELEASEYEAR));
-            int numOfPage = cursor.getInt(cursor.getColumnIndex(b.BOOK_PAGE));
-            double price = cursor.getDouble(cursor.getColumnIndex(b.BOOK_PRICE));
-            double rateStar = cursor.getDouble(cursor.getColumnIndex(b.BOOK_RATESTAR));
-            int numOfReview = cursor.getInt(cursor.getColumnIndex(b.BOOK_REVIEW));
-            String description =cursor.getString(cursor.getColumnIndex(b.BOOK_DESCRIPTION));
-            String category =cursor.getString(cursor.getColumnIndex(b.BOOK_CATEGORY));
+            int id = cursor.getInt(cursor.getColumnIndex(BOOK_ID));
+            String imageLink =cursor.getString(cursor.getColumnIndex(BOOK_IMAGELINK));
+            String title =cursor.getString(cursor.getColumnIndex(BOOK_TITLE));
+            String author =cursor.getString(cursor.getColumnIndex(BOOK_AUTHOR));
+            String publisher =cursor.getString(cursor.getColumnIndex(BOOK_PUBLISHER));
+            int releaseYear = cursor.getInt(cursor.getColumnIndex(BOOK_RELEASEYEAR));
+            int numOfPage = cursor.getInt(cursor.getColumnIndex(BOOK_PAGE));
+            double price = cursor.getDouble(cursor.getColumnIndex(BOOK_PRICE));
+            double rateStar = cursor.getDouble(cursor.getColumnIndex(BOOK_RATESTAR));
+            int numOfReview = cursor.getInt(cursor.getColumnIndex(BOOK_REVIEW));
+            String description =cursor.getString(cursor.getColumnIndex(BOOK_DESCRIPTION));
+            String category =cursor.getString(cursor.getColumnIndex(BOOK_CATEGORY));
             list.add(new Book(id,imageLink,title,author,publisher,releaseYear,numOfPage,price,rateStar,numOfReview,description,category));
         }
         return list;
@@ -188,18 +200,18 @@ public class SQLHelper extends SQLiteOpenHelper {
     public void InsertBookToHistory(Book book) {
         sqLiteDatabase = getWritableDatabase();
         contentValues = new ContentValues();
-        contentValues.put(b.BOOK_ID, book.getId());
-        contentValues.put(b.BOOK_IMAGELINK, book.getImageLink());
-        contentValues.put(b.BOOK_TITLE, book.getTitle());
-        contentValues.put(b.BOOK_TITLE, book.getAuthor());
-        contentValues.put(b.BOOK_PUBLISHER, book.getPublisher());
-        contentValues.put(b.BOOK_RELEASEYEAR, book.getReleaseYear());
-        contentValues.put(b.BOOK_PAGE, book.getNumOfPage());
-        contentValues.put(b.BOOK_PRICE, book.getPrice());
-        contentValues.put(b.BOOK_RATESTAR, book.getRateStar());
-        contentValues.put(b.BOOK_REVIEW, book.getNumOfReview());
-        contentValues.put(b.BOOK_DESCRIPTION, book.getDescription());
-        contentValues.put(b.BOOK_CATEGORY, book.getCategory());
+        contentValues.put(BOOK_ID, book.getId());
+        contentValues.put(BOOK_IMAGELINK, book.getImageLink());
+        contentValues.put(BOOK_TITLE, book.getTitle());
+        contentValues.put(BOOK_AUTHOR, book.getAuthor());
+        contentValues.put(BOOK_PUBLISHER, book.getPublisher());
+        contentValues.put(BOOK_RELEASEYEAR, book.getReleaseYear());
+        contentValues.put(BOOK_PAGE, book.getNumOfPage());
+        contentValues.put(BOOK_PRICE, book.getPrice());
+        contentValues.put(BOOK_RATESTAR, book.getRateStar());
+        contentValues.put(BOOK_REVIEW, book.getNumOfReview());
+        contentValues.put(BOOK_DESCRIPTION, book.getDescription());
+        contentValues.put(BOOK_CATEGORY, book.getCategory());
         sqLiteDatabase.insert(DB_TABLE_HISTORY, null, contentValues);
     }
     public List<Book> getAllBookInHistory(){
@@ -214,18 +226,18 @@ public class SQLHelper extends SQLiteOpenHelper {
                 null,
                 null);
         while (cursor.moveToNext()){
-            int id = cursor.getInt(cursor.getColumnIndex(b.BOOK_ID));
-            String imageLink =cursor.getString(cursor.getColumnIndex(b.BOOK_IMAGELINK));
-            String title =cursor.getString(cursor.getColumnIndex(b.BOOK_TITLE));
-            String author =cursor.getString(cursor.getColumnIndex(b.BOOK_AUTHOR));
-            String publisher =cursor.getString(cursor.getColumnIndex(b.BOOK_PUBLISHER));
-            int releaseYear = cursor.getInt(cursor.getColumnIndex(b.BOOK_RELEASEYEAR));
-            int numOfPage = cursor.getInt(cursor.getColumnIndex(b.BOOK_PAGE));
-            double price = cursor.getDouble(cursor.getColumnIndex(b.BOOK_PRICE));
-            double rateStar = cursor.getDouble(cursor.getColumnIndex(b.BOOK_RATESTAR));
-            int numOfReview = cursor.getInt(cursor.getColumnIndex(b.BOOK_REVIEW));
-            String description =cursor.getString(cursor.getColumnIndex(b.BOOK_DESCRIPTION));
-            String category =cursor.getString(cursor.getColumnIndex(b.BOOK_CATEGORY));
+            int id = cursor.getInt(cursor.getColumnIndex(BOOK_ID));
+            String imageLink =cursor.getString(cursor.getColumnIndex(BOOK_IMAGELINK));
+            String title =cursor.getString(cursor.getColumnIndex(BOOK_TITLE));
+            String author =cursor.getString(cursor.getColumnIndex(BOOK_AUTHOR));
+            String publisher =cursor.getString(cursor.getColumnIndex(BOOK_PUBLISHER));
+            int releaseYear = cursor.getInt(cursor.getColumnIndex(BOOK_RELEASEYEAR));
+            int numOfPage = cursor.getInt(cursor.getColumnIndex(BOOK_PAGE));
+            double price = cursor.getDouble(cursor.getColumnIndex(BOOK_PRICE));
+            double rateStar = cursor.getDouble(cursor.getColumnIndex(BOOK_RATESTAR));
+            int numOfReview = cursor.getInt(cursor.getColumnIndex(BOOK_REVIEW));
+            String description =cursor.getString(cursor.getColumnIndex(BOOK_DESCRIPTION));
+            String category =cursor.getString(cursor.getColumnIndex(BOOK_CATEGORY));
             list.add(new Book(id,imageLink,title,author,publisher,releaseYear,numOfPage,price,rateStar,numOfReview,description,category));
         }
         return list;

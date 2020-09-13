@@ -64,6 +64,7 @@ public class HistoryFragment extends Fragment {
         binding.btnDeleteHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sqlHelper.deleteHistory();
                 listHistory.clear();
                 BookAdapter adapter = new BookAdapter(listHistory, getContext());
                 GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3, RecyclerView.VERTICAL, false);

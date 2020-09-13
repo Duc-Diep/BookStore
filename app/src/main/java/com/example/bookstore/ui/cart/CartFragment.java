@@ -2,6 +2,7 @@ package com.example.bookstore.ui.cart;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.example.bookstore.R;
 import com.example.bookstore.databinding.FragmentCartBinding;
 import com.example.bookstore.event.Bus;
 import com.example.bookstore.event.EHideToolBar;
+import com.example.bookstore.event.ELogin;
 import com.example.bookstore.sqlhelper.SQLHelper;
 import com.example.bookstore.ui.book.Book;
 import com.example.bookstore.ui.book.BookAdapter;
@@ -32,6 +34,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import static android.content.Context.MODE_PRIVATE;
+import static com.example.bookstore.AccountAttribute.ACCOUNT_STATUS;
+import static com.example.bookstore.AccountAttribute.SHARE_PRE_NAME;
+
 public class CartFragment extends Fragment {
     FragmentCartBinding binding;
     SQLHelper sqlHelper;
@@ -40,7 +46,6 @@ public class CartFragment extends Fragment {
     public static CartFragment newInstance() {
 
         Bundle args = new Bundle();
-
         CartFragment fragment = new CartFragment();
         fragment.setArguments(args);
         return fragment;
@@ -48,6 +53,7 @@ public class CartFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_cart, container, false);
+
         listCart = new ArrayList<>();
         sqlHelper = new SQLHelper(getContext());
         listCart = sqlHelper.getAllBookInCart();
@@ -79,6 +85,7 @@ public class CartFragment extends Fragment {
         NumberFormat numberFormat = NumberFormat.getInstance(local);
         String money = numberFormat.format(TotalMoney());
         if (TotalMoney() != 0) {
+            Toast.makeText(getContext(),getString(R.string.delete_item_cart),Toast.LENGTH_SHORT).show();
             binding.btnBuy.setText(getString(R.string.buy) + " " + money + " vnđ");
         } else {
             binding.btnBuy.setText(getString(R.string.nothing));
@@ -86,21 +93,24 @@ public class CartFragment extends Fragment {
         binding.btnBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (listCart.size()>0) {
-                    Toast.makeText(getContext(), getString(R.string.buy_success), Toast.LENGTH_SHORT).show();
-                    sqlHelper.deleteCart();
-                    for (Book x : listCart
-                    ) {
-                        sqlHelper.InsertBookToHistory(x);
+                if(getStatus()){
+                    if (listCart.size()>0) {
+                        Toast.makeText(getContext(), getString(R.string.buy_success), Toast.LENGTH_SHORT).show();
+                        sqlHelper.deleteCart();
+                        for (Book x : listCart
+                        ) {
+                            sqlHelper.InsertBookToHistory(x);
+                        }
+                        listCart.clear();
+                        BookAdapter adapter = new BookAdapter(listCart, getContext());
+                        binding.listBookInCart.setAdapter(adapter);
+                        binding.btnBuy.setText(getString(R.string.nothing));
+                    } else {
+                        Toast.makeText(getContext(), getString(R.string.nothing), Toast.LENGTH_SHORT).show();
                     }
-                    listCart.clear();
-                    BookAdapter adapter = new BookAdapter(listCart, getContext());
-                    binding.listBookInCart.setAdapter(adapter);
-                    binding.btnBuy.setText(getString(R.string.nothing));
-                } else {
-                    Toast.makeText(getContext(), getString(R.string.nothing), Toast.LENGTH_SHORT).show();
+                }else {
+                    onDialogLoginShow();
                 }
-
             }
         });
         return binding.getRoot();
@@ -170,5 +180,39 @@ public class CartFragment extends Fragment {
                     }
                 }).create();
         alertDialog.show();
+    }
+    private void onDialogLoginShow() {
+        AlertDialog alertDialog = new AlertDialog.Builder(getContext())
+                .setTitle(getString(R.string.un_login))
+                .setMessage(getString(R.string.sign_in_now))
+                .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Bus.getInstance().post(new ELogin());
+                    }
+                })
+                .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).create();
+        alertDialog.show();
+    }
+    public boolean getStatus(){
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences(SHARE_PRE_NAME,MODE_PRIVATE);
+        boolean check = sharedPreferences.getBoolean(ACCOUNT_STATUS,false);
+        return check;
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        Bus.getInstance().register(getContext());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Bus.getInstance().register(getContext());
     }
 }
