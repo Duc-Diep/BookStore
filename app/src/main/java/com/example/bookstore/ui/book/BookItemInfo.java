@@ -5,6 +5,7 @@ import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -48,6 +49,7 @@ public class BookItemInfo extends Fragment {
     Fragment me = this;
     SQLHelper sqlHelper;
     BookAttribute b;
+    ImageView imageView;
     public static BookItemInfo newInstance(List<Book> bookList,Book book) {
         
         Bundle bundle = new Bundle();
@@ -113,21 +115,25 @@ public class BookItemInfo extends Fragment {
                 similarBook.add(x);
             }
         }
-        BookAdapter adapter = new BookAdapter(similarBook, getContext());
-        RecyclerView.LayoutManager layoutManager2 = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
-        binding.similarBook.setAdapter(adapter);
-        binding.similarBook.setLayoutManager(layoutManager2);
-        adapter.setIonClickBook(new IonClickBook() {
-            @Override
-            public void onClickItem(Book book) {
-                Fragment fragment = BookItemInfo.newInstance(bookList,book);
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-            }
-        });
+        if (similarBook.size()>0){
+            BookAdapter adapter = new BookAdapter(similarBook, getContext());
+            RecyclerView.LayoutManager layoutManager2 = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
+            binding.similarBook.setAdapter(adapter);
+            binding.similarBook.setLayoutManager(layoutManager2);
+            adapter.setIonClickBook(new IonClickBook() {
+                @Override
+                public void onClickItem(Book book) {
+                    Fragment fragment = BookItemInfo.newInstance(bookList,book);
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+                }
+            });
+        }else{
+
+        }
         binding.btnEvaluate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

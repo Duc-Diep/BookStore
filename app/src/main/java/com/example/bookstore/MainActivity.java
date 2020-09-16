@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
 
         //set ToolBar
         setSupportActionBar(binding.toolbar);
-        //binding.toolbar.setVisibility(View.GONE);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_cart,R.id.nav_history, R.id.nav_other_product,R.id.nav_account)
                 .setDrawerLayout(binding.drawerLayout)

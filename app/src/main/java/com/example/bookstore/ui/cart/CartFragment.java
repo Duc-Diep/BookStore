@@ -31,6 +31,7 @@ import com.example.bookstore.ui.book.IonClickBook;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -85,7 +86,7 @@ public class CartFragment extends Fragment {
         NumberFormat numberFormat = NumberFormat.getInstance(local);
         String money = numberFormat.format(TotalMoney());
         if (TotalMoney() != 0) {
-            Toast.makeText(getContext(),getString(R.string.delete_item_cart),Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.delete_item_cart), Toast.LENGTH_SHORT).show();
             binding.btnBuy.setText(getString(R.string.buy) + " " + money + " vnđ");
         } else {
             binding.btnBuy.setText(getString(R.string.nothing));
@@ -93,22 +94,13 @@ public class CartFragment extends Fragment {
         binding.btnBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(getStatus()){
-                    if (listCart.size()>0) {
-                        Toast.makeText(getContext(), getString(R.string.buy_success), Toast.LENGTH_SHORT).show();
-                        sqlHelper.deleteCart();
-                        for (Book x : listCart
-                        ) {
-                            sqlHelper.InsertBookToHistory(x);
-                        }
-                        listCart.clear();
-                        BookAdapter adapter = new BookAdapter(listCart, getContext());
-                        binding.listBookInCart.setAdapter(adapter);
-                        binding.btnBuy.setText(getString(R.string.nothing));
+                if (getStatus()) {
+                    if (listCart.size() > 0) {
+                        onDialogOptionBuyShow();
                     } else {
                         Toast.makeText(getContext(), getString(R.string.nothing), Toast.LENGTH_SHORT).show();
                     }
-                }else {
+                } else {
                     onDialogLoginShow();
                 }
             }
@@ -132,6 +124,7 @@ public class CartFragment extends Fragment {
                 .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getContext(),getString(R.string.delete_success),Toast.LENGTH_SHORT).show();
                         sqlHelper.deleteItemInCart(String.valueOf(book.getId()));
                         listCart = sqlHelper.getAllBookInCart();
                         BookAdapter adapter = new BookAdapter(listCart, getContext());
@@ -167,8 +160,15 @@ public class CartFragment extends Fragment {
                         binding.btnBuy.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Toast.makeText(getContext(), getString(R.string.buy_success), Toast.LENGTH_SHORT);
-
+                                if (getStatus()) {
+                                    if (listCart.size() > 0) {
+                                        onDialogOptionBuyShow();
+                                    } else {
+                                        Toast.makeText(getContext(), getString(R.string.nothing), Toast.LENGTH_SHORT).show();
+                                    }
+                                } else {
+                                    onDialogLoginShow();
+                                }
                             }
                         });
                     }
@@ -181,6 +181,7 @@ public class CartFragment extends Fragment {
                 }).create();
         alertDialog.show();
     }
+
     private void onDialogLoginShow() {
         AlertDialog alertDialog = new AlertDialog.Builder(getContext())
                 .setTitle(getString(R.string.un_login))
@@ -199,11 +200,48 @@ public class CartFragment extends Fragment {
                 }).create();
         alertDialog.show();
     }
-    public boolean getStatus(){
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences(SHARE_PRE_NAME,MODE_PRIVATE);
-        boolean check = sharedPreferences.getBoolean(ACCOUNT_STATUS,false);
+
+    private void onDialogOptionBuyShow() {
+        boolean[] booleans = {true, false, false, false};
+        final List<String> strings = Arrays.asList(getResources().getStringArray(R.array.option_buy));
+        AlertDialog alertDialog = new AlertDialog.Builder(getContext())
+                .setTitle(getString(R.string.select_option_buy))
+                //.setMessage("Yes or No")
+                .setSingleChoiceItems(R.array.option_buy, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int position) {
+
+                    }
+                })
+                .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        sqlHelper.deleteCart();
+                        for (Book x : listCart
+                        ) {
+                            sqlHelper.InsertBookToHistory(x);
+                        }
+                        listCart.clear();
+                        BookAdapter adapter = new BookAdapter(listCart, getContext());
+                        binding.listBookInCart.setAdapter(adapter);
+                        binding.btnBuy.setText(getString(R.string.nothing));
+                        Toast.makeText(getContext(),getString(R.string.your_choice) +" "+ strings.get(which).toString() , Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getContext(), getString(R.string.delete_trans), Toast.LENGTH_SHORT).show();
+                    }
+                }).create();
+        alertDialog.show();
+    }
+    public boolean getStatus() {
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences(SHARE_PRE_NAME, MODE_PRIVATE);
+        boolean check = sharedPreferences.getBoolean(ACCOUNT_STATUS, false);
         return check;
     }
+
     @Override
     public void onStart() {
         super.onStart();

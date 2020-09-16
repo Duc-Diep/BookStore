@@ -54,5 +54,13 @@
     <string name="un_login"> You are not logged in yet! </string>
     <string name="delete_history">Delete History</string>
     <string name="login_sucess">Login Sucessfully</string>
-
+    <string name="select_option_buy">Select a payment method</string>
+    <string name="delete_trans">Transaction is canceled</string>
+    <string name="delete_success">Delete Sucessfully</string>
+    <string name="your_choice">Order Success </string>
+    <string-array name="option_buy">
+        <item>Payment via MoMo</item>
+        <item>Internet banking</item>
+        <item>Payment on delivery</item>
+    </string-array>
 </resources>

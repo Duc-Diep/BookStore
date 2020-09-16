@@ -9,6 +9,7 @@
         android:padding="@dimen/_10sdp"
        >
         <TextView
+            android:id="@+id/isLogin"
             android:textSize="@dimen/_15sdp"
             android:text="@string/un_login"
             android:layout_centerHorizontal="true"
@@ -28,7 +29,7 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:visibility="gone"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/_100sdp"
+            android:layout_marginTop="@dimen/_95sdp"
             android:id="@+id/avatar"
             app:civ_border_width="@dimen/_1sdp"
             app:civ_border_color="#fff"
