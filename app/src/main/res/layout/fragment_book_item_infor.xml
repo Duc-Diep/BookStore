@@ -205,7 +205,6 @@
         </androidx.recyclerview.widget.RecyclerView>
         <Button
             android:text="@string/add_to_cart"
-            android:layout_marginTop="@dimen/_50sdp"
             android:layout_alignParentBottom="true"
             android:layout_below="@+id/similarBook"
             android:id="@+id/btnAddToCart"

@@ -41,10 +41,16 @@
     <string name="delete_item_cart">Bạn có thể giữ vào mặt hàng để xóa khỏi giỏ hàng</string>
 
 <!--    login-->
-    <string name="input_username">Nhập tên tài khoản hoặc gmail</string>
+    <string name="input_username">Nhập số điện thoại</string>
     <string name="input_password">Nhập mật khẩu</string>
+    <string name="confirm_pass">Xác nhận mật khẩu</string>
     <string name="forget_pass">Quên mật khẩu?</string>
     <string name="newbie">Bạn chưa có tài khoản? </string>
+    <string name="check_null">Tên tài khoản hoặc mật khẩu không đc để trống</string>
+    <string name="check_equal">Xác nhận mật khẩu phải giống nhau</string>
+    <string name="check_sucess_true">Đăng kí thành công</string>
+    <string name="check_sucess_false">Thông tin chưa hợp lệ</string>
+    <string name="check_confirm_code">Vui lòng điền mã xác nhận</string>
     <string name="sign_up">Đăng ký ngay</string>
     <string name="sign_in">Đăng nhập</string>
     <string name="sign_in_now">Đăng nhập ngay?</string>
@@ -52,6 +58,9 @@
     <string name="email_address">Địa chỉ email: </string>
     <string name="phone_number">Số điện thoại: </string>
     <string name="address">Địa chỉ: </string>
+    <string name="full_name">Họ tên: </string>
+    <string name="sign_up_acc">Đăng kí tài khoản</string>
+    <string name="confirm_code">Nhập mã xác thực: </string>
     <string name="un_login">Bạn chưa đăng nhập!</string>
     <string name="delete_history">Xóa lịch sử</string>
     <string name="login_sucess">Đăng nhập thành công</string>
@@ -59,6 +68,7 @@
     <string name="delete_trans">Giao dịch bị hủy bỏ</string>
     <string name="your_choice">Đặt hàng thành công</string>
     <string name="delete_success">Xóa thành công</string>
+
     <string-array name="option_buy">
         <item>Thanh toán qua MoMo</item>
         <item>Internet banking</item>

@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.example.bookstore.ui.account.Account;
 import com.example.bookstore.ui.book.BookAttribute;
 import com.example.bookstore.ui.book.Book;
 
@@ -33,6 +34,7 @@ public class SQLHelper extends SQLiteOpenHelper {
     static final String DB_TABLE_ALL_BOOK = "AllBooks";
     static final String DB_TABLE_CART = "Cart";
     static final String DB_TABLE_HISTORY = "History";
+    static final String DB_TABLE_ACCOUNT = "Account";
     static final int DB_VERSION = 1;
     SQLiteDatabase sqLiteDatabase;
     ContentValues contentValues;
@@ -42,6 +44,14 @@ public class SQLHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        //Create table acc
+        String queryCreateTableAccount = "CREATE TABLE "+ DB_TABLE_ACCOUNT +"(" +
+                "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
+                "phone Text," +
+                "password Text," +
+                "fullname Text,"+
+                "address Text)";
+        db.execSQL(queryCreateTableAccount);
         //Create table all books
         String queryCreateTableAllBook = "CREATE TABLE "+ DB_TABLE_ALL_BOOK +"(" +
                 "id INTEGER NOT NULL PRIMARY KEY," +
@@ -245,5 +255,36 @@ public class SQLHelper extends SQLiteOpenHelper {
     public int deleteHistory() {
         sqLiteDatabase = getWritableDatabase();
         return sqLiteDatabase.delete(DB_TABLE_HISTORY, null, null);
+    }
+    //query table Account
+    public void InsertAccount(Account account) {
+        sqLiteDatabase = getWritableDatabase();
+        contentValues = new ContentValues();
+        contentValues.put("phone", account.getPhone());
+        contentValues.put("password", account.getPassword());
+        contentValues.put("fullname", account.getFullName());
+        contentValues.put("address", account.getAddress());
+        sqLiteDatabase.insert(DB_TABLE_ACCOUNT, null, contentValues);
+    }
+    public List<Account> getAllAccount(){
+        List<Account> list = new ArrayList<>();
+        sqLiteDatabase = getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.query(false,DB_TABLE_ACCOUNT,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null);
+        while (cursor.moveToNext()){
+            int id = cursor.getInt(cursor.getColumnIndex("id"));
+            String phone =cursor.getString(cursor.getColumnIndex("phone"));
+            String password =cursor.getString(cursor.getColumnIndex("password"));
+            String fullname =cursor.getString(cursor.getColumnIndex("fullname"));
+            String address =cursor.getString(cursor.getColumnIndex("address"));
+            list.add(new Account(id,phone,password,fullname,address));
+        }
+        return list;
     }
 }
