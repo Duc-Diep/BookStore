@@ -1,6 +1,7 @@
 package com.example.bookstore.ui.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+//import com.bumptech.glide.Glide;
 import com.example.bookstore.event.Bus;
 import com.example.bookstore.event.EHideToolBar;
 import com.example.bookstore.event.ELogin;
@@ -36,6 +38,7 @@ import com.example.bookstore.ui.book.BookItemInfo;
 import com.example.bookstore.ui.book.IlongClickBook;
 import com.example.bookstore.ui.book.IonClickBook;
 import com.squareup.picasso.Picasso;
+//import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,7 +51,7 @@ public class HomeFragment extends Fragment {
     FragmentHomeBinding binding;
     String url ="https://bookshopb.herokuapp.com/api/books";
     String result = "";
-    List<Book> list,list2,list3;
+    List<Book> list,list2,list3,listtemp;
     SQLHelper sqlHelper;
     List<String> mangquangcao = new ArrayList<>();
     BookAttribute b;
@@ -66,6 +69,8 @@ public class HomeFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_home,container,false);
         sqlHelper = new SQLHelper(getContext());
         list = new ArrayList<>();
+        listtemp = new ArrayList<>();
+        listtemp = sqlHelper.getAllBook();
         //set view Flipper
         ViewFlipper();
         //set click
@@ -156,7 +161,16 @@ public class HomeFragment extends Fragment {
                 rateStar = object.getDouble(b.BOOK_RATESTAR);
                 Book book = new Book(id, imageLink, title, author, publisher, releaseYear, numOfPage,price,rateStar,numOfReview,description,category);
                 list.add(book);
-                sqlHelper.InsertBookToAllBook(book);
+                boolean check = false;
+                for (Book x : listtemp
+                     ) {
+                    if(x.getId()==id){
+                        check = true;
+                    }
+                }
+                if(!check){
+                    sqlHelper.InsertBookToAllBook(book);
+                }
             }
 
         } catch (JSONException e) {
@@ -181,12 +195,6 @@ public class HomeFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
-        adapter1.setIlongClickBook(new IlongClickBook() {
-            @Override
-            public void longClickItem(Book book) {
-
-            }
-        });
         //add list 2
         list2 = new ArrayList<>();
         for(int i =list.size()-1;i>=0;i--){
@@ -206,12 +214,6 @@ public class HomeFragment extends Fragment {
                 fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
-            }
-        });
-        adapter2.setIlongClickBook(new IlongClickBook() {
-            @Override
-            public void longClickItem(Book book) {
-
             }
         });
         //add list3
@@ -236,12 +238,6 @@ public class HomeFragment extends Fragment {
                 fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
-
-            }
-        });
-        adapter3.setIlongClickBook(new IlongClickBook() {
-            @Override
-            public void longClickItem(Book book) {
 
             }
         });

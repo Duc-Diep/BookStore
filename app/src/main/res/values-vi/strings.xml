@@ -26,6 +26,7 @@
     <string name="page">trang</string>
     <string name="numOfEvaluate"> lượt đánh giá</string>
     <string name="search">Tìm kiếm</string>
+    <string name="error_evaluate">Có lỗi trong quá trình đánh giá,Vui lòng thử lại sau</string>
     <string name="your_evaluate">Bạn đã đánh giá cuốn sách này </string>
     <string name="star"> sao</string>
     <string name="add_to_cart_sucess">Thêm vào giỏ hàng thành công </string>
@@ -48,6 +49,7 @@
     <string name="newbie">Bạn chưa có tài khoản? </string>
     <string name="check_null">Tên tài khoản hoặc mật khẩu không đc để trống</string>
     <string name="check_equal">Xác nhận mật khẩu phải giống nhau</string>
+    <string name="check_login_fail">Sai tên tài khoản hoặc mật khẩu</string>
     <string name="check_sucess_true">Đăng kí thành công</string>
     <string name="check_sucess_false">Thông tin chưa hợp lệ</string>
     <string name="check_confirm_code">Vui lòng điền mã xác nhận</string>

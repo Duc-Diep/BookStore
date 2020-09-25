@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,7 @@ public class CartFragment extends Fragment {
     FragmentCartBinding binding;
     SQLHelper sqlHelper;
     List<Book> listCart, allBook;
+    int pos=0;
 
     public static CartFragment newInstance() {
 
@@ -57,9 +59,15 @@ public class CartFragment extends Fragment {
 
         listCart = new ArrayList<>();
         sqlHelper = new SQLHelper(getContext());
-        listCart = sqlHelper.getAllBookInCart();
+
         allBook = sqlHelper.getAllBook();
-        BookAdapter adapter = new BookAdapter(listCart, getContext());
+        setLayout();
+
+        return binding.getRoot();
+    }
+    public void setLayout(){
+        listCart = sqlHelper.getAllBookInCart();
+        CartAdapter adapter = new CartAdapter(listCart, getContext());
         adapter.setIonClickBook(new IonClickBook() {
             @Override
             public void onClickItem(Book book) {
@@ -72,9 +80,9 @@ public class CartFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
-        adapter.setIlongClickBook(new IlongClickBook() {
+        adapter.setIonClickDelete(new IonClickDelete() {
             @Override
-            public void longClickItem(Book book) {
+            public void onClickItem(Book book) {
                 onDialogShow(book);
             }
         });
@@ -86,7 +94,7 @@ public class CartFragment extends Fragment {
         NumberFormat numberFormat = NumberFormat.getInstance(local);
         String money = numberFormat.format(TotalMoney());
         if (TotalMoney() != 0) {
-            Toast.makeText(getContext(), getString(R.string.delete_item_cart), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext(), getString(R.string.delete_item_cart), Toast.LENGTH_SHORT).show();
             binding.btnBuy.setText(getString(R.string.buy) + " " + money + " vnđ");
         } else {
             binding.btnBuy.setText(getString(R.string.nothing));
@@ -105,9 +113,7 @@ public class CartFragment extends Fragment {
                 }
             }
         });
-        return binding.getRoot();
     }
-
     private double TotalMoney() {
         double price = 0;
         for (Book x : listCart
@@ -126,51 +132,7 @@ public class CartFragment extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         Toast.makeText(getContext(),getString(R.string.delete_success),Toast.LENGTH_SHORT).show();
                         sqlHelper.deleteItemInCart(String.valueOf(book.getId()));
-                        listCart = sqlHelper.getAllBookInCart();
-                        BookAdapter adapter = new BookAdapter(listCart, getContext());
-                        adapter.setIonClickBook(new IonClickBook() {
-                            @Override
-                            public void onClickItem(Book book) {
-                                Fragment fragment = BookItemInfo.newInstance(allBook, book);
-                                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
-                                fragmentTransaction.addToBackStack(null);
-                                fragmentTransaction.commit();
-                            }
-                        });
-                        adapter.setIlongClickBook(new IlongClickBook() {
-                            @Override
-                            public void longClickItem(Book book) {
-                                onDialogShow(book);
-                            }
-                        });
-
-                        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3, RecyclerView.VERTICAL, false);
-                        binding.listBookInCart.setAdapter(adapter);
-                        binding.listBookInCart.setLayoutManager(gridLayoutManager);
-                        Locale local = new Locale("vi", "VN");
-                        NumberFormat numberFormat = NumberFormat.getInstance(local);
-                        String money = numberFormat.format(TotalMoney());
-                        if (TotalMoney() != 0) {
-                            binding.btnBuy.setText(getString(R.string.buy) + " " + money + "đ");
-                        } else {
-                            binding.btnBuy.setText(getString(R.string.nothing));
-                        }
-                        binding.btnBuy.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                if (getStatus()) {
-                                    if (listCart.size() > 0) {
-                                        onDialogOptionBuyShow();
-                                    } else {
-                                        Toast.makeText(getContext(), getString(R.string.nothing), Toast.LENGTH_SHORT).show();
-                                    }
-                                } else {
-                                    onDialogLoginShow();
-                                }
-                            }
-                        });
+                        setLayout();
                     }
                 })
                 .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
@@ -186,6 +148,7 @@ public class CartFragment extends Fragment {
         AlertDialog alertDialog = new AlertDialog.Builder(getContext())
                 .setTitle(getString(R.string.un_login))
                 .setMessage(getString(R.string.sign_in_now))
+                .setIcon(R.drawable.user)
                 .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -202,15 +165,17 @@ public class CartFragment extends Fragment {
     }
 
     private void onDialogOptionBuyShow() {
+
         boolean[] booleans = {true, false, false, false};
         final List<String> strings = Arrays.asList(getResources().getStringArray(R.array.option_buy));
         AlertDialog alertDialog = new AlertDialog.Builder(getContext())
                 .setTitle(getString(R.string.select_option_buy))
                 //.setMessage("Yes or No")
+                .setIcon(R.drawable.pay)
                 .setSingleChoiceItems(R.array.option_buy, 0, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int position) {
-
+                        pos=position;
                     }
                 })
                 .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
@@ -222,10 +187,11 @@ public class CartFragment extends Fragment {
                             sqlHelper.InsertBookToHistory(x);
                         }
                         listCart.clear();
-                        BookAdapter adapter = new BookAdapter(listCart, getContext());
+                        CartAdapter adapter = new CartAdapter(listCart, getContext());
                         binding.listBookInCart.setAdapter(adapter);
                         binding.btnBuy.setText(getString(R.string.nothing));
-                        Toast.makeText(getContext(),getString(R.string.your_choice) +" "+ strings.get(which).toString() , Toast.LENGTH_SHORT).show();
+                        Log.d("LOG",String.valueOf(which));
+                        Toast.makeText(getContext(),getString(R.string.your_choice) +" "+ strings.get(pos) , Toast.LENGTH_SHORT).show();
                     }
                 })
                 .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {

@@ -18,6 +18,9 @@ import com.example.bookstore.event.Bus;
 import com.example.bookstore.event.ELogin;
 
 import static android.content.Context.MODE_PRIVATE;
+import static com.example.bookstore.AccountAttribute.ACCOUNT_ADDRESS;
+import static com.example.bookstore.AccountAttribute.ACCOUNT_FULL_NAME;
+import static com.example.bookstore.AccountAttribute.ACCOUNT_PHONE;
 import static com.example.bookstore.AccountAttribute.ACCOUNT_STATUS;
 import static com.example.bookstore.AccountAttribute.SHARE_PRE_NAME;
 
@@ -38,13 +41,20 @@ public class AccountFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_account, container, false);
         if (getStatus()) {
-            binding.email.setVisibility(View.VISIBLE);
+            SharedPreferences sharedPreferences = getContext().getSharedPreferences(SHARE_PRE_NAME, MODE_PRIVATE);
+            String fullname = sharedPreferences.getString(ACCOUNT_FULL_NAME,"");
+            String phone = sharedPreferences.getString(ACCOUNT_PHONE,"");
+            String address = sharedPreferences.getString(ACCOUNT_ADDRESS,"");
+            //
             binding.avatar.setVisibility(View.VISIBLE);
             binding.layoutPic.setVisibility(View.VISIBLE);
             binding.layoutAddress.setVisibility(View.VISIBLE);
-            binding.layoutEmailAddress.setVisibility(View.VISIBLE);
             binding.layoutPhone.setVisibility(View.VISIBLE);
             binding.isLogin.setVisibility(View.GONE);
+            //
+            binding.accName.setText(fullname);
+            binding.phoneNumber.setText(phone);
+            binding.address.setText(address);
             binding.btnLoginAndLogout.setText(getString(R.string.sign_out));
         } else {
             binding.btnLoginAndLogout.setText(getString(R.string.sign_in));
@@ -53,11 +63,9 @@ public class AccountFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (getStatus()) {
-                    binding.email.setVisibility(View.GONE);
                     binding.avatar.setVisibility(View.GONE);
                     binding.layoutPic.setVisibility(View.GONE);
                     binding.layoutAddress.setVisibility(View.GONE);
-                    binding.layoutEmailAddress.setVisibility(View.GONE);
                     binding.layoutPhone.setVisibility(View.GONE);
                     binding.isLogin.setVisibility(View.VISIBLE);
                     binding.btnLoginAndLogout.setText(getString(R.string.sign_in));

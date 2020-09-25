@@ -24,6 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+//import com.bumptech.glide.Glide;
 import com.example.bookstore.R;
 import com.example.bookstore.databinding.FragmentBookItemInforBinding;
 import com.example.bookstore.event.Bus;
@@ -32,6 +33,7 @@ import com.example.bookstore.event.EShowToolBar;
 import com.example.bookstore.sqlhelper.SQLHelper;
 import com.example.bookstore.ui.home.ListBookFragment;
 import com.squareup.picasso.Picasso;
+//import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,14 +44,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import static com.example.bookstore.ui.book.BookAttribute.BOOK_AUTHOR;
+import static com.example.bookstore.ui.book.BookAttribute.BOOK_CATEGOTY;
+import static com.example.bookstore.ui.book.BookAttribute.BOOK_DESCRIPTION;
+import static com.example.bookstore.ui.book.BookAttribute.BOOK_ID;
+import static com.example.bookstore.ui.book.BookAttribute.BOOK_IMAGELINK;
+import static com.example.bookstore.ui.book.BookAttribute.BOOK_PAGE;
+import static com.example.bookstore.ui.book.BookAttribute.BOOK_PRICE;
+import static com.example.bookstore.ui.book.BookAttribute.BOOK_PUBLISHER;
+import static com.example.bookstore.ui.book.BookAttribute.BOOK_RATESTAR;
+import static com.example.bookstore.ui.book.BookAttribute.BOOK_RELEASEYEAR;
+import static com.example.bookstore.ui.book.BookAttribute.BOOK_REVIEW;
+import static com.example.bookstore.ui.book.BookAttribute.BOOK_TITLE;
+
 public class BookItemInfo extends Fragment {
     FragmentBookItemInforBinding binding;
     Book book;
     List<Book> bookList,similarBook;
     Fragment me = this;
     SQLHelper sqlHelper;
-    BookAttribute b;
-    ImageView imageView;
     public static BookItemInfo newInstance(List<Book> bookList,Book book) {
         
         Bundle bundle = new Bundle();
@@ -70,6 +83,7 @@ public class BookItemInfo extends Fragment {
         bookList= (List<Book>) getArguments().getSerializable("list");
 
         //set atribute
+        //Picasso.with(getContext()).load(book.getImageLink()).fit().centerInside().into(binding.imgBook);
         Picasso.with(getContext()).load(book.getImageLink()).into(binding.imgBook);
         binding.tvBookName.setText(book.getTitle());
         binding.tvAuthor.setText("Tác giả: "+book.getAuthor());
@@ -82,7 +96,7 @@ public class BookItemInfo extends Fragment {
         if(book.getNumOfReview()>0){
             DecimalFormat decimalFormat = new DecimalFormat("#.#");
             double star = book.getRateStar()/book.getNumOfReview();
-            binding.tvstarOfBook.setText(String.valueOf(decimalFormat.format(star)));
+            binding.tvstarOfBook.setText(decimalFormat.format(star));
         }
         else{
             binding.tvstarOfBook.setText("0");
@@ -140,18 +154,18 @@ public class BookItemInfo extends Fragment {
                 RequestQueue requestQueue = Volley.newRequestQueue(getContext());
                 JSONObject jsonObject = new JSONObject();
                 try {
-                    jsonObject.put(b.BOOK_ID, book.getId());
-                    jsonObject.put( b.BOOK_IMAGELINK, book.getImageLink());
-                    jsonObject.put(b.BOOK_TITLE, book.getTitle());
-                    jsonObject.put(b.BOOK_AUTHOR, book.getAuthor());
-                    jsonObject.put(b.BOOK_PUBLISHER, book.getPublisher());
-                    jsonObject.put(b.BOOK_RELEASEYEAR, book.getReleaseYear());
-                    jsonObject.put(b.BOOK_PAGE, book.getNumOfPage());
-                    jsonObject.put(b.BOOK_PRICE, book.getPrice());
-                    jsonObject.put(b.BOOK_DESCRIPTION, book.getDescription());
-                    jsonObject.put(b.BOOK_CATEGOTY, book.getCategory());
-                    jsonObject.put(b.BOOK_RATESTAR, (book.getRateStar()+binding.rateStar.getRating()));
-                    jsonObject.put(b.BOOK_REVIEW,(book.getNumOfReview()+1));
+                    jsonObject.put(BOOK_ID, book.getId());
+                    jsonObject.put(BOOK_IMAGELINK, book.getImageLink());
+                    jsonObject.put(BOOK_TITLE, book.getTitle());
+                    jsonObject.put(BOOK_AUTHOR, book.getAuthor());
+                    jsonObject.put(BOOK_PUBLISHER, book.getPublisher());
+                    jsonObject.put(BOOK_RELEASEYEAR, book.getReleaseYear());
+                    jsonObject.put(BOOK_PAGE, book.getNumOfPage());
+                    jsonObject.put(BOOK_PRICE, book.getPrice());
+                    jsonObject.put(BOOK_DESCRIPTION, book.getDescription());
+                    jsonObject.put(BOOK_CATEGOTY, book.getCategory());
+                    jsonObject.put(BOOK_RATESTAR, (book.getRateStar()+binding.rateStar.getRating()));
+                    jsonObject.put(BOOK_REVIEW,(book.getNumOfReview()+1));
                 }catch(JSONException e){
                     e.printStackTrace();
                 }
@@ -160,12 +174,16 @@ public class BookItemInfo extends Fragment {
                 StringRequest stringRequest = new StringRequest(Request.Method.PATCH, url, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        DecimalFormat decimalFormat = new DecimalFormat("#.#");
+                        double star = (book.getRateStar()+binding.rateStar.getRating())/(book.getNumOfReview()+1);
+                        binding.tvstarOfBook.setText(String.valueOf(decimalFormat.format(star)));
+                        binding.tvNumOfReview.setText((book.getNumOfReview()+1)+" "+getString(R.string.numOfEvaluate));
                         Toast.makeText(getContext(),getString(R.string.your_evaluate)+" "+binding.rateStar.getRating()+" "+getString(R.string.star),Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getContext(),getString(R.string.your_evaluate),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(),getString(R.string.evaluate_eror),Toast.LENGTH_SHORT).show();
                     }
                 }) {
                     //xu li du lieu cho body
@@ -192,10 +210,7 @@ public class BookItemInfo extends Fragment {
                 };
                 requestQueue.add(stringRequest);
 
-                DecimalFormat decimalFormat = new DecimalFormat("#.#");
-                double star = (book.getRateStar()+binding.rateStar.getRating())/(book.getNumOfReview()+1);
-                binding.tvstarOfBook.setText(String.valueOf(decimalFormat.format(star)));
-                binding.tvNumOfReview.setText((book.getNumOfReview()+1)+" "+getString(R.string.numOfEvaluate));
+
                 //double star = (book.getRateStar()+1)/(book.getNumOfReview()+1);
                 //binding.tvstarOfBook.setText(String.valueOf(star));
 

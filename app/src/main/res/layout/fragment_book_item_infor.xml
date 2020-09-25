@@ -150,7 +150,7 @@
         <TextView
             android:layout_marginTop="@dimen/_5sdp"
             android:textStyle="bold"
-            android:textSize="@dimen/_14sdp"
+            android:textSize="@dimen/_12sdp"
             android:layout_below="@id/layout3part"
             android:id="@+id/tvRankAndComment"
             android:text="@string/rank_and_comment"
@@ -162,7 +162,7 @@
             android:layout_below="@id/tvRankAndComment"
             android:id="@+id/rateStar"
             android:numStars="5"
-            android:rating="0"
+            android:rating="2.5"
             android:scaleX="0.8"
             android:scaleY="0.8"
             android:transformPivotX="@dimen/_30sdp"

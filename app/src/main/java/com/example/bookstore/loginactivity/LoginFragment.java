@@ -19,13 +19,23 @@ import com.example.bookstore.R;
 import com.example.bookstore.databinding.FragmentLoginBinding;
 import com.example.bookstore.event.Bus;
 import com.example.bookstore.event.EHome;
+import com.example.bookstore.sqlhelper.SQLHelper;
+import com.example.bookstore.ui.account.Account;
 import com.example.bookstore.ui.book.BookItemInfo;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.example.bookstore.AccountAttribute.ACCOUNT_ADDRESS;
+import static com.example.bookstore.AccountAttribute.ACCOUNT_FULL_NAME;
+import static com.example.bookstore.AccountAttribute.ACCOUNT_PHONE;
 import static com.example.bookstore.AccountAttribute.ACCOUNT_STATUS;
 import static com.example.bookstore.AccountAttribute.SHARE_PRE_NAME;
 
 public class LoginFragment extends Fragment {
     FragmentLoginBinding binding;
+    List<Account> list;
+    SQLHelper sqlHelper;
     public static LoginFragment newInstance() {
 
         Bundle args = new Bundle();
@@ -38,18 +48,35 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login,container,false);
+        list = new ArrayList<>();
+        sqlHelper = new SQLHelper(getContext());
+        list = sqlHelper.getAllAccount();
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String username = binding.edtUserName.getText().toString();
                 String password = binding.edtPasWord.getText().toString();
                 if(username.length()>0&&password.length()>0){
-                    Bus.getInstance().post(new EHome());
-                    SharedPreferences sharedPreferences = getContext().getSharedPreferences(SHARE_PRE_NAME, Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putBoolean(ACCOUNT_STATUS,true);
-                    editor.apply();
-                    Toast.makeText(getContext(),getString(R.string.login_sucess),Toast.LENGTH_SHORT).show();
+                    boolean check = false;
+                    for (Account x: list) {
+                        if(x.getPhone().equals(username)&&x.getPassword().equals(password)){
+                            Bus.getInstance().post(new EHome());
+                            SharedPreferences sharedPreferences = getContext().getSharedPreferences(SHARE_PRE_NAME, Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putBoolean(ACCOUNT_STATUS,true);
+                            editor.putString(ACCOUNT_FULL_NAME,x.getFullName());
+                            editor.putString(ACCOUNT_PHONE,x.getPhone());
+                            editor.putString(ACCOUNT_ADDRESS,x.getAddress());
+                            editor.apply();
+                            check = true;
+                            Toast.makeText(getContext(),getString(R.string.login_sucess),Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                    }
+                    if(!check){
+                        Toast.makeText(getContext(),getString(R.string.check_login_fail),Toast.LENGTH_SHORT).show();
+                    }
+
                 }else{
                     Toast.makeText(getContext(),getString(R.string.check_null),Toast.LENGTH_SHORT).show();
                 }

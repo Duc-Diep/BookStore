@@ -72,12 +72,7 @@ public class ListBookFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
-        adapter.setIlongClickBook(new IlongClickBook() {
-            @Override
-            public void longClickItem(Book book) {
 
-            }
-        });
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),3, RecyclerView.VERTICAL,false);
         binding.listBook.setAdapter(adapter);
         binding.listBook.setLayoutManager(gridLayoutManager);
@@ -115,12 +110,7 @@ public class ListBookFragment extends Fragment {
                         fragmentTransaction.commit();
                     }
                 });
-                adapter.setIlongClickBook(new IlongClickBook() {
-                    @Override
-                    public void longClickItem(Book book) {
 
-                    }
-                });
             }
         });
         return binding.getRoot();

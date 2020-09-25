@@ -45,11 +45,13 @@
     <string name="forget_pass"> Forgot password? </string>
     <string name="confirm_pass">Confirm Password</string>
     <string name="newbie"> Don\'t have an account yet? </string>
+    <string name = "check_login_fail"> Wrong account name or password </string>
     <string name = "check_null"> Username or password cannot be left blank </string>
     <string name = "check_equal"> Confirm password must be the same </string>
     <string name = "check_sucess_false"> Invalid information </string>
     <string name = "check_sucess_true"> Registered successfully </string>
     <string name = "check_confirm_code"> Please enter your confirmation code </string>
+    <string name="error_evaluate">Có lỗi trong quá trình đánh giá,Vui lòng thử lại sau</string>
     <string name="sign_up"> Register now </string>
     <string name="sign_in">Sign In</string>
     <string name="sign_in_now">Sign in now?</string>
