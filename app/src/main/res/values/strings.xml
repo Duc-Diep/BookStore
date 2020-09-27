@@ -74,4 +74,6 @@
         <item>Internet banking</item>
         <item>Payment on delivery</item>
     </string-array>
+    //internet
+    <string name = "check_internet"> No internet connection, please try again! </string>
 </resources>

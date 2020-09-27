@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
+import com.example.bookstore.Internet;
 import com.example.bookstore.R;
 
 import com.example.bookstore.databinding.FragmentAccountBinding;
@@ -42,9 +44,9 @@ public class AccountFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_account, container, false);
         if (getStatus()) {
             SharedPreferences sharedPreferences = getContext().getSharedPreferences(SHARE_PRE_NAME, MODE_PRIVATE);
-            String fullname = sharedPreferences.getString(ACCOUNT_FULL_NAME,"");
-            String phone = sharedPreferences.getString(ACCOUNT_PHONE,"");
-            String address = sharedPreferences.getString(ACCOUNT_ADDRESS,"");
+            String fullname = sharedPreferences.getString(ACCOUNT_FULL_NAME, "");
+            String phone = sharedPreferences.getString(ACCOUNT_PHONE, "");
+            String address = sharedPreferences.getString(ACCOUNT_ADDRESS, "");
             //
             binding.avatar.setVisibility(View.VISIBLE);
             binding.layoutPic.setVisibility(View.VISIBLE);
@@ -62,19 +64,24 @@ public class AccountFragment extends Fragment {
         binding.btnLoginAndLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getStatus()) {
-                    binding.avatar.setVisibility(View.GONE);
-                    binding.layoutPic.setVisibility(View.GONE);
-                    binding.layoutAddress.setVisibility(View.GONE);
-                    binding.layoutPhone.setVisibility(View.GONE);
-                    binding.isLogin.setVisibility(View.VISIBLE);
-                    binding.btnLoginAndLogout.setText(getString(R.string.sign_in));
-                    SharedPreferences sharedPreferences = getContext().getSharedPreferences(SHARE_PRE_NAME, MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putBoolean(ACCOUNT_STATUS, false);
-                    editor.apply();
+                if (Internet.checkConnection(getContext())) {
+                    if (getStatus()) {
+                        binding.avatar.setVisibility(View.GONE);
+                        binding.layoutPic.setVisibility(View.GONE);
+                        binding.layoutAddress.setVisibility(View.GONE);
+                        binding.layoutPhone.setVisibility(View.GONE);
+                        binding.isLogin.setVisibility(View.VISIBLE);
+                        binding.btnLoginAndLogout.setText(getString(R.string.sign_in));
+                        SharedPreferences sharedPreferences = getContext().getSharedPreferences(SHARE_PRE_NAME, MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putBoolean(ACCOUNT_STATUS, false);
+                        editor.apply();
+                    } else {
+                        Bus.getInstance().post(new ELogin());
+                    }
                 } else {
-                    Bus.getInstance().post(new ELogin());
+                    Toast.makeText(getContext(), getString(R.string.check_internet), Toast.LENGTH_SHORT).show();
+
                 }
 
             }

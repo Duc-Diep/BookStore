@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookstore.Internet;
 import com.example.bookstore.R;
 import com.example.bookstore.databinding.FragmentCartBinding;
 import com.example.bookstore.event.Bus;
@@ -102,14 +103,19 @@ public class CartFragment extends Fragment {
         binding.btnBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getStatus()) {
-                    if (listCart.size() > 0) {
-                        onDialogOptionBuyShow();
+                if(Internet.checkConnection(getContext())){
+                    if (getStatus()) {
+                        if (listCart.size() > 0) {
+                            onDialogOptionBuyShow();
+                        } else {
+                            Toast.makeText(getContext(), getString(R.string.nothing), Toast.LENGTH_SHORT).show();
+                        }
                     } else {
-                        Toast.makeText(getContext(), getString(R.string.nothing), Toast.LENGTH_SHORT).show();
+                        onDialogLoginShow();
                     }
-                } else {
-                    onDialogLoginShow();
+                }
+                else {
+                    Toast.makeText(getContext(),getString(R.string.check_internet),Toast.LENGTH_SHORT).show();
                 }
             }
         });

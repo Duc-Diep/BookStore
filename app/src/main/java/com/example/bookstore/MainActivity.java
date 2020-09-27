@@ -1,13 +1,17 @@
 package com.example.bookstore;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.bookstore.databinding.ActivityMainBinding;
 
+import com.example.bookstore.event.ECloseApp;
 import com.example.bookstore.event.EHideToolBar;
 import com.example.bookstore.event.ELogin;
 import com.example.bookstore.event.EShowToolBar;
@@ -37,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
+
         //set language
 //        btnEng = findViewById(R.id.btnEnglish);
 //        btnVi = findViewById(R.id.btnTiengViet);
@@ -100,6 +105,10 @@ public class MainActivity extends AppCompatActivity {
     public void Event(ELogin eLogin){
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+        finish();
+    }
+    @Subscribe(threadMode = ThreadMode.POSTING)
+    public void Event(ECloseApp eCloseApp){
         finish();
     }
 

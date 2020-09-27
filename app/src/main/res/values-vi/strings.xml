@@ -76,4 +76,6 @@
         <item>Internet banking</item>
         <item>Thanh toán khi nhận hàng</item>
     </string-array>
+    //internet
+    <string name="check_internet">Không có kết nối internet, vui lòng thử lại!</string>
 </resources>

@@ -1,5 +1,7 @@
 package com.example.bookstore.ui.home;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
@@ -25,7 +28,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 //import com.bumptech.glide.Glide;
+import com.example.bookstore.Internet;
 import com.example.bookstore.event.Bus;
+import com.example.bookstore.event.ECloseApp;
 import com.example.bookstore.event.EHideToolBar;
 import com.example.bookstore.event.ELogin;
 import com.example.bookstore.ui.book.BookAttribute;
@@ -67,74 +72,91 @@ public class HomeFragment extends Fragment {
     }
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_home,container,false);
-        sqlHelper = new SQLHelper(getContext());
-        list = new ArrayList<>();
-        listtemp = new ArrayList<>();
-        listtemp = sqlHelper.getAllBook();
-        //set view Flipper
-        ViewFlipper();
-        //set click
-        binding.moreNewBook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bus.getInstance().post(new EHideToolBar());
-                Fragment fragment = ListBookFragment.newInstance(list);
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
-                fragmentTransaction.addToBackStack(null);
-                //fragmentTransaction.show(fragment);
-                fragmentTransaction.commit();
-            }
-        });
-        binding.moreHotBook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bus.getInstance().post(new EHideToolBar());
-                Fragment fragment = ListBookFragment.newInstance(list2);
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
-                fragmentTransaction.addToBackStack(null);
-                //fragmentTransaction.show(fragment);
-                fragmentTransaction.commit();
-            }
-        });
-        binding.moreOfferBook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bus.getInstance().post(new EHideToolBar());
-                Fragment fragment = ListBookFragment.newInstance(list3);
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
-                fragmentTransaction.addToBackStack(null);
-                //fragmentTransaction.show(fragment);
-                fragmentTransaction.commit();
-            }
-        });
-
         binding.moreHotBook.setVisibility(View.INVISIBLE);
         binding.moreNewBook.setVisibility(View.INVISIBLE);
         binding.moreOfferBook.setVisibility(View.INVISIBLE);
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        StringRequest stringRequest= new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                binding.progessbar.setVisibility(View.INVISIBLE);
-                binding.moreHotBook.setVisibility(View.VISIBLE);
-                binding.moreNewBook.setVisibility(View.VISIBLE);
-                binding.moreOfferBook.setVisibility(View.VISIBLE);
-                result = response;
-                getJson();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                binding.listHotBook.setVisibility(View.INVISIBLE);
-            }
-        });
-        requestQueue.add(stringRequest);
+        if(Internet.checkConnection(getContext())){
+            sqlHelper = new SQLHelper(getContext());
+            list = new ArrayList<>();
+            listtemp = new ArrayList<>();
+            listtemp = sqlHelper.getAllBook();
+            //set view Flipper
+            ViewFlipper();
+            //set click
+            binding.moreNewBook.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bus.getInstance().post(new EHideToolBar());
+                    Fragment fragment = ListBookFragment.newInstance(list);
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
+                    fragmentTransaction.addToBackStack(null);
+                    //fragmentTransaction.show(fragment);
+                    fragmentTransaction.commit();
+                }
+            });
+            binding.moreHotBook.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bus.getInstance().post(new EHideToolBar());
+                    Fragment fragment = ListBookFragment.newInstance(list2);
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
+                    fragmentTransaction.addToBackStack(null);
+                    //fragmentTransaction.show(fragment);
+                    fragmentTransaction.commit();
+                }
+            });
+            binding.moreOfferBook.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bus.getInstance().post(new EHideToolBar());
+                    Fragment fragment = ListBookFragment.newInstance(list3);
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
+                    fragmentTransaction.addToBackStack(null);
+                    //fragmentTransaction.show(fragment);
+                    fragmentTransaction.commit();
+                }
+            });
+
+
+            RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+            StringRequest stringRequest= new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    binding.progessbar.setVisibility(View.INVISIBLE);
+                    binding.moreHotBook.setVisibility(View.VISIBLE);
+                    binding.moreNewBook.setVisibility(View.VISIBLE);
+                    binding.moreOfferBook.setVisibility(View.VISIBLE);
+                    result = response;
+                    getJson();
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    binding.listHotBook.setVisibility(View.INVISIBLE);
+                }
+            });
+            requestQueue.add(stringRequest);
+        }
+        else{
+            AlertDialog alertDialog = new AlertDialog.Builder(getContext())
+                    .setTitle(getString(R.string.confirm))
+                    .setMessage(getString(R.string.check_internet))
+                    .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                           Bus.getInstance().post(new ECloseApp());
+                        }
+                    })
+                    .create();
+            alertDialog.show();
+        }
+
 
         return binding.getRoot();
 
