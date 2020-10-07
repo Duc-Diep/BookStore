@@ -26,9 +26,7 @@ import com.example.bookstore.event.EHideToolBar;
 import com.example.bookstore.event.ELogin;
 import com.example.bookstore.sqlhelper.SQLHelper;
 import com.example.bookstore.ui.book.Book;
-import com.example.bookstore.ui.book.BookAdapter;
 import com.example.bookstore.ui.book.BookItemInfo;
-import com.example.bookstore.ui.book.IlongClickBook;
 import com.example.bookstore.ui.book.IonClickBook;
 
 import java.text.NumberFormat;

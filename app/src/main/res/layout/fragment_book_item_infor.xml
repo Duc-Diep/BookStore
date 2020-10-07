@@ -106,6 +106,7 @@
         <TextView
             android:layout_marginLeft="@dimen/_10sdp"
             android:text="Hello"
+            android:maxLines="4"
             android:layout_toRightOf="@id/cardBook"
             android:layout_below="@+id/des"
             android:id="@+id/tvDescrition"
@@ -114,7 +115,7 @@
         </TextView>
         <LinearLayout
             android:id="@+id/layout3part"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:layout_below="@id/cardBook"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

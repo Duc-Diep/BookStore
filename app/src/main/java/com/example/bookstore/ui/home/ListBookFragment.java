@@ -18,14 +18,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookstore.event.Bus;
-import com.example.bookstore.event.EHideToolBar;
 import com.example.bookstore.event.EShowToolBar;
 import com.example.bookstore.ui.book.Book;
 import com.example.bookstore.ui.book.BookAdapter;
 import com.example.bookstore.R;
 import com.example.bookstore.databinding.FragmentListBookInfoBinding;
 import com.example.bookstore.ui.book.BookItemInfo;
-import com.example.bookstore.ui.book.IlongClickBook;
 import com.example.bookstore.ui.book.IonClickBook;
 
 import java.util.ArrayList;

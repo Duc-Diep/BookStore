@@ -170,7 +170,7 @@ public class BookItemInfo extends Fragment {
                     e.printStackTrace();
                 }
                 final String mrequestbody = jsonObject.toString();
-                String url = "https://bookshopb.herokuapp.com/api/book";
+                String url = "https://bookshopb.herokuapp.com/api/books";
                 StringRequest stringRequest = new StringRequest(Request.Method.PATCH, url, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
