@@ -1,13 +1,9 @@
 package com.example.bookstore;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.bookstore.databinding.ActivityMainBinding;
 
@@ -15,7 +11,7 @@ import com.example.bookstore.event.ECloseApp;
 import com.example.bookstore.event.EHideToolBar;
 import com.example.bookstore.event.ELogin;
 import com.example.bookstore.event.EShowToolBar;
-import com.example.bookstore.loginactivity.LoginActivity;
+import com.example.bookstore.ui.loginactivity.LoginActivity;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
@@ -27,9 +23,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
-import static com.example.bookstore.AccountAttribute.ACCOUNT_STATUS;
-import static com.example.bookstore.AccountAttribute.SHARE_PRE_NAME;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;

@@ -18,6 +18,23 @@ public class Book implements Parcelable, Serializable {
     int numOfReview;
     String description;
     String category;
+    String dateBuy;
+
+    public Book(int id, String imageLink, String title, String author, String publisher, int releaseYear, int numOfPage, double price, double rateStar, int numOfReview, String description, String category, String dateBuy) {
+        this.id = id;
+        this.imageLink = imageLink;
+        this.title = title;
+        this.author = author;
+        this.publisher = publisher;
+        this.releaseYear = releaseYear;
+        this.numOfPage = numOfPage;
+        this.price = price;
+        this.rateStar = rateStar;
+        this.numOfReview = numOfReview;
+        this.description = description;
+        this.category = category;
+        this.dateBuy = dateBuy;
+    }
 
     public Book(int id, String imageLink, String title, String author, String publisher, int releaseYear, int numOfPage, double price, double rateStar, int numOfReview, String description, String category) {
         this.id = id;
@@ -32,6 +49,7 @@ public class Book implements Parcelable, Serializable {
         this.numOfReview = numOfReview;
         this.description = description;
         this.category = category;
+        this.dateBuy="";
     }
 
     public Book(int id, String imageLink, String title, String author, String publisher, int releaseYear, int numOfPage, double price) {
@@ -67,6 +85,14 @@ public class Book implements Parcelable, Serializable {
             return new Book[size];
         }
     };
+
+    public String getDateBuy() {
+        return dateBuy;
+    }
+
+    public void setDateBuy(String dateBuy) {
+        this.dateBuy = dateBuy;
+    }
 
     public int getNumOfReview() {
         return numOfReview;

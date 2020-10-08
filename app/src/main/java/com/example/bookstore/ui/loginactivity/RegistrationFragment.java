@@ -1,4 +1,4 @@
-package com.example.bookstore.loginactivity;
+package com.example.bookstore.ui.loginactivity;
 
 import android.os.Bundle;
 import android.text.Editable;

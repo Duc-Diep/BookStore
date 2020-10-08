@@ -68,7 +68,7 @@
     <string name="login_sucess">Đăng nhập thành công</string>
     <string name="select_option_buy">Chọn phương thức thanh toán</string>
     <string name="delete_trans">Giao dịch bị hủy bỏ</string>
-    <string name="your_choice">Đặt hàng thành công</string>
+    <string name="your_choice">Đặt hàng thành công\n Phương thức thanh toán: </string>
     <string name="delete_success">Xóa thành công</string>
 
     <string-array name="option_buy">

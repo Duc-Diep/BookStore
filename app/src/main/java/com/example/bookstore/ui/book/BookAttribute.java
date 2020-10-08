@@ -14,5 +14,7 @@ public class BookAttribute {
     public static final String BOOK_DESCRIPTION = "description";
     public static final String BOOK_CATEGOTY = "categoty";
     public static final String BOOK_CATEGORY = "category";
+    public static final String BOOK_DATEBUY = "dateBuy";
+
 
 }

@@ -1,4 +1,4 @@
-package com.example.bookstore.loginactivity;
+package com.example.bookstore.ui.loginactivity;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +13,6 @@ import com.example.bookstore.MainActivity;
 import com.example.bookstore.R;
 import com.example.bookstore.databinding.ActivityLoginBinding;
 import com.example.bookstore.event.EHome;
-import com.example.bookstore.event.ELogin;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;

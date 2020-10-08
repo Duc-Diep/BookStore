@@ -17,6 +17,7 @@ import java.util.List;
 
 import static com.example.bookstore.ui.book.BookAttribute.BOOK_AUTHOR;
 import static com.example.bookstore.ui.book.BookAttribute.BOOK_CATEGORY;
+import static com.example.bookstore.ui.book.BookAttribute.BOOK_DATEBUY;
 import static com.example.bookstore.ui.book.BookAttribute.BOOK_DESCRIPTION;
 import static com.example.bookstore.ui.book.BookAttribute.BOOK_ID;
 import static com.example.bookstore.ui.book.BookAttribute.BOOK_IMAGELINK;
@@ -95,7 +96,8 @@ public class SQLHelper extends SQLiteOpenHelper {
                 "rateStar INTEGER,"+
                 "numOfReview INTEGER,"+
                 "description Text,"+
-                "category Text)";
+                "category Text,"+
+                "dateBuy Text)";
         db.execSQL(queryCreateTableHistory);
     }
 
@@ -222,6 +224,7 @@ public class SQLHelper extends SQLiteOpenHelper {
         contentValues.put(BOOK_REVIEW, book.getNumOfReview());
         contentValues.put(BOOK_DESCRIPTION, book.getDescription());
         contentValues.put(BOOK_CATEGORY, book.getCategory());
+        contentValues.put(BOOK_DATEBUY, book.getDateBuy());
         sqLiteDatabase.insert(DB_TABLE_HISTORY, null, contentValues);
     }
     public List<Book> getAllBookInHistory(){
@@ -248,7 +251,8 @@ public class SQLHelper extends SQLiteOpenHelper {
             int numOfReview = cursor.getInt(cursor.getColumnIndex(BOOK_REVIEW));
             String description =cursor.getString(cursor.getColumnIndex(BOOK_DESCRIPTION));
             String category =cursor.getString(cursor.getColumnIndex(BOOK_CATEGORY));
-            list.add(new Book(id,imageLink,title,author,publisher,releaseYear,numOfPage,price,rateStar,numOfReview,description,category));
+            String dateBuy = cursor.getString(cursor.getColumnIndex(BOOK_DATEBUY));
+            list.add(new Book(id,imageLink,title,author,publisher,releaseYear,numOfPage,price,rateStar,numOfReview,description,category,dateBuy));
         }
         return list;
     }

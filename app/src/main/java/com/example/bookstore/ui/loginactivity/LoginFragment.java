@@ -1,4 +1,4 @@
-package com.example.bookstore.loginactivity;
+package com.example.bookstore.ui.loginactivity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -21,7 +21,6 @@ import com.example.bookstore.event.Bus;
 import com.example.bookstore.event.EHome;
 import com.example.bookstore.sqlhelper.SQLHelper;
 import com.example.bookstore.ui.account.Account;
-import com.example.bookstore.ui.book.BookItemInfo;
 
 import java.util.ArrayList;
 import java.util.List;

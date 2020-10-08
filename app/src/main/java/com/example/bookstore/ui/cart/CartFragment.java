@@ -29,9 +29,12 @@ import com.example.bookstore.ui.book.Book;
 import com.example.bookstore.ui.book.BookItemInfo;
 import com.example.bookstore.ui.book.IonClickBook;
 
+import java.text.DateFormat;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -185,9 +188,12 @@ public class CartFragment extends Fragment {
                 .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        DateFormat df = new SimpleDateFormat("HH:mm yyyy/MM/dd");
+                        String date = df.format(Calendar.getInstance().getTime());
                         sqlHelper.deleteCart();
                         for (Book x : listCart
                         ) {
+                            x.setDateBuy(date);
                             sqlHelper.InsertBookToHistory(x);
                         }
                         listCart.clear();
@@ -195,7 +201,7 @@ public class CartFragment extends Fragment {
                         binding.listBookInCart.setAdapter(adapter);
                         binding.btnBuy.setText(getString(R.string.nothing));
                         Log.d("LOG",String.valueOf(which));
-                        Toast.makeText(getContext(),getString(R.string.your_choice) +" "+ strings.get(pos) , Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(),"\t\t\t\t\t\t"+getString(R.string.your_choice) +" "+ strings.get(pos) , Toast.LENGTH_SHORT).show();
                     }
                 })
                 .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {

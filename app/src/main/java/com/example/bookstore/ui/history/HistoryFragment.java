@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -46,7 +47,7 @@ public class HistoryFragment extends Fragment {
         sqlHelper = new SQLHelper(getContext());
         listHistory = sqlHelper.getAllBookInHistory();
         allBook = sqlHelper.getAllBook();
-        BookAdapter adapter = new BookAdapter(listHistory, getContext());
+        HistoryAdapter adapter = new HistoryAdapter(listHistory, getContext());
         adapter.setIonClickBook(new IonClickBook() {
             @Override
             public void onClickItem(Book book) {
@@ -64,9 +65,10 @@ public class HistoryFragment extends Fragment {
         binding.btnDeleteHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getContext(),getString(R.string.delete_success),Toast.LENGTH_SHORT);
                 sqlHelper.deleteHistory();
                 listHistory.clear();
-                BookAdapter adapter = new BookAdapter(listHistory, getContext());
+                HistoryAdapter adapter = new HistoryAdapter(listHistory, getContext());
                 GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3, RecyclerView.VERTICAL, false);
                 binding.listHistory.setAdapter(adapter);
                 binding.listHistory.setLayoutManager(gridLayoutManager);
