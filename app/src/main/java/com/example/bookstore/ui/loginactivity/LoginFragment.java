@@ -93,7 +93,14 @@ public class LoginFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
+        binding.btnBackToHomeFragment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bus.getInstance().post(new EHome());
+            }
+        });
         return binding.getRoot();
+
     }
     @Override
     public void onStart() {

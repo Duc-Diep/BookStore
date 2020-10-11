@@ -220,7 +220,7 @@ public class BookItemInfo extends Fragment {
             @Override
             public void onClick(View v) {
                 sqlHelper.InsertBookToCart(book);
-                Toast.makeText(getContext(),getString(R.string.add_to_cart_sucess),Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),getString(R.string.add_to_cart_sucess),Toast.LENGTH_SHORT).show();
             }
         });
         return binding.getRoot();

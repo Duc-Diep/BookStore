@@ -188,7 +188,7 @@ public class CartFragment extends Fragment {
                 .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        DateFormat df = new SimpleDateFormat("HH:mm yyyy/MM/dd");
+                        DateFormat df = new SimpleDateFormat("HH:mm dd/MM/yyyy");
                         String date = df.format(Calendar.getInstance().getTime());
                         sqlHelper.deleteCart();
                         for (Book x : listCart

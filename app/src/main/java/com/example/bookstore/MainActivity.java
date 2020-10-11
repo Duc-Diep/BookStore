@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         //set ToolBar
         setSupportActionBar(binding.toolbar);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_cart,R.id.nav_history, R.id.nav_other_product,R.id.nav_account)
+                R.id.nav_home, R.id.nav_cart,R.id.nav_history, R.id.nav_other_product,R.id.nav_account,R.id.nav_introduce)
                 .setDrawerLayout(binding.drawerLayout)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

@@ -6,7 +6,13 @@
         android:layout_height="match_parent"
         android:background="@drawable/book_bgr"
         android:padding="@dimen/_15sdp">
+        <ImageView
+            android:id="@+id/btnBackToHomeFragment"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:src="@drawable/ic_arrow_back_black_24dp">
 
+        </ImageView>
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/logo"
             android:layout_width="@dimen/_150sdp"
@@ -29,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/input_username"
-                android:inputType="text"
+                android:inputType="number"
                 app:counterEnabled="true">
 
             </com.google.android.material.textfield.TextInputEditText>

@@ -37,7 +37,6 @@
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
     <string name="evaluate_eror"> An error occurred during evaluation, please try again later! </string>
-    <string name="delete_item_cart">Bạn có thể giữ vào mặt hàng để xóa khỏi giỏ hàng</string>
 
     <!--    login-->
     <string name="input_username"> Enter your phone </string>
@@ -51,8 +50,7 @@
     <string name = "check_sucess_false"> Invalid information </string>
     <string name = "check_sucess_true"> Registered successfully </string>
     <string name = "check_confirm_code"> Please enter your confirmation code </string>
-    <string name="error_evaluate">Có lỗi trong quá trình đánh giá,Vui lòng thử lại sau</string>
-    <string name="sign_up"> Register now </string>
+    <string name = "error_evaluate"> There was an error during evaluation, Please try again later </string>    <string name="sign_up"> Register now </string>
     <string name="sign_in">Sign In</string>
     <string name="sign_in_now">Sign in now?</string>
     <string name="full_name">Full name: </string>
@@ -69,6 +67,8 @@
     <string name="delete_trans">Transaction is canceled</string>
     <string name="delete_success">Delete Sucessfully</string>
     <string name="your_choice">Order successfully \n Payment method: </string>
+    <string name="logout_success">Logout Success</string>
+
     <string-array name="option_buy">
         <item>Payment via MoMo</item>
         <item>Internet banking</item>
@@ -76,4 +76,7 @@
     </string-array>
     //internet
     <string name = "check_internet"> No internet connection, please try again! </string>
+    //introduce
+    <string name="introduce">Introduce</string>
+
 </resources>

@@ -1,6 +1,7 @@
 package com.example.bookstore.ui.history;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +49,11 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         final Book book = list.get(position);
         Picasso.with(context).load(book.getImageLink()).into(holder.imgBook);
         holder.tvTitle.setText(book.getTitle());
+        holder.tvTitle.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+        holder.tvTitle.setHorizontallyScrolling(true);
+        holder.tvTitle.setSelected(true);
+        holder.tvTitle.setMarqueeRepeatLimit(-1);
+        holder.tvTitle.setFocusable(true);
         Locale local =new Locale("vi","VN");
         NumberFormat numberFormat = NumberFormat.getInstance(local);
         String money = numberFormat.format(book.getPrice());

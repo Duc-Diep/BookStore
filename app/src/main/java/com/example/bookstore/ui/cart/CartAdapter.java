@@ -1,6 +1,7 @@
 package com.example.bookstore.ui.cart;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +56,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         //Picasso.with(context).load(book.getImageLink()).fit().centerInside().into(holder.imgBook);
         Picasso.with(context).load(book.getImageLink()).into(holder.imgBook);
         holder.tvTitle.setText(book.getTitle());
+        holder.tvTitle.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+        holder.tvTitle.setHorizontallyScrolling(true);
+        holder.tvTitle.setSelected(true);
+        holder.tvTitle.setMarqueeRepeatLimit(-1);
+        holder.tvTitle.setFocusable(true);
         Locale local =new Locale("vi","VN");
         NumberFormat numberFormat = NumberFormat.getInstance(local);
         String money = numberFormat.format(book.getPrice());

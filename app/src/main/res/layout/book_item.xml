@@ -23,7 +23,7 @@
                 </ImageView>
             </androidx.cardview.widget.CardView>
         <TextView
-            android:maxLines="1"
+            android:singleLine="true"
             android:layout_below="@+id/cardBook"
             android:textStyle="bold"
             android:text="SAO"

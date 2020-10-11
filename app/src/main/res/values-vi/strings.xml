@@ -70,6 +70,7 @@
     <string name="delete_trans">Giao dịch bị hủy bỏ</string>
     <string name="your_choice">Đặt hàng thành công\n Phương thức thanh toán: </string>
     <string name="delete_success">Xóa thành công</string>
+    <string name="logout_success">Đăng xuất thành công</string>
 
     <string-array name="option_buy">
         <item>Thanh toán qua MoMo</item>
@@ -78,4 +79,7 @@
     </string-array>
     //internet
     <string name="check_internet">Không có kết nối internet, vui lòng thử lại!</string>
+    //introduce
+    <string name="introduce">Giới thiệu</string>
+
 </resources>
