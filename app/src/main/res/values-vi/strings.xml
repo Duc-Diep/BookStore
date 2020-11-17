@@ -81,5 +81,6 @@
     <string name="check_internet">Không có kết nối internet, vui lòng thử lại!</string>
     //introduce
     <string name="introduce">Giới thiệu</string>
+    <string name="phone_introduce">0981206317</string>
 
 </resources>

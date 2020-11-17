@@ -78,5 +78,6 @@
     <string name = "check_internet"> No internet connection, please try again! </string>
     //introduce
     <string name="introduce">Introduce</string>
+    <string name="phone_introduce">0981206317</string>
 
 </resources>

@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.bookstore.R;
 import com.example.bookstore.databinding.FragmentIntroduceBinding;
+import com.example.bookstore.event.Bus;
+import com.example.bookstore.event.ECall;
 
 public class IntroduceFragment extends Fragment {
     FragmentIntroduceBinding binding;
@@ -28,7 +30,23 @@ public class IntroduceFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding= DataBindingUtil.inflate(inflater, R.layout.fragment_introduce,container,false);
-        
+        binding.btnCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bus.getInstance().post(new ECall());
+            }
+        });
         return binding.getRoot();
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        Bus.getInstance().register(getContext());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Bus.getInstance().register(getContext());
     }
 }

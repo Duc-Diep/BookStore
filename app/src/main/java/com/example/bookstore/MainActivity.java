@@ -1,12 +1,14 @@
 package com.example.bookstore;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
 import com.example.bookstore.databinding.ActivityMainBinding;
 
+import com.example.bookstore.event.ECall;
 import com.example.bookstore.event.ECloseApp;
 import com.example.bookstore.event.EHideToolBar;
 import com.example.bookstore.event.ELogin;
@@ -104,5 +106,10 @@ public class MainActivity extends AppCompatActivity {
     public void Event(ECloseApp eCloseApp){
         finish();
     }
-
+    @Subscribe(threadMode = ThreadMode.POSTING)
+    public void Event(ECall eCall){
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + getString(R.string.phone_introduce)));
+        startActivity(intent);
+    }
 }
